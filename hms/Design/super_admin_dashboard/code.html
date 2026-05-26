@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>MediFlow Super Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#0053db",
+                    "on-surface-variant": "#434655",
+                    "primary-fixed": "#dbe1ff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f0f0fb",
+                    "primary-container": "#2563eb",
+                    "on-tertiary-fixed": "#191c1e",
+                    "surface": "#faf8ff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "inverse-surface": "#2e3039",
+                    "background": "#faf8ff",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#eeefff",
+                    "on-secondary-fixed-variant": "#005048",
+                    "outline-variant": "#c3c6d7",
+                    "surface-bright": "#faf8ff",
+                    "surface-variant": "#e1e2ed",
+                    "on-surface": "#191b23",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "surface-container-high": "#e7e7f3",
+                    "inverse-primary": "#b4c5ff",
+                    "on-secondary-fixed": "#00201c",
+                    "surface-container-highest": "#e1e2ed",
+                    "tertiary": "#525657",
+                    "surface-container": "#ededf9",
+                    "error-container": "#ffdad6",
+                    "primary": "#004ac6",
+                    "on-primary-fixed": "#00174b",
+                    "secondary": "#006b5f",
+                    "surface-container-low": "#f3f3fe",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "tertiary-container": "#6b6e70",
+                    "secondary-container": "#6df5e1",
+                    "secondary-fixed": "#71f8e4",
+                    "tertiary-fixed": "#e0e3e5",
+                    "on-tertiary-fixed-variant": "#444749",
+                    "outline": "#737686",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#eff1f3",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d9d9e5",
+                    "on-background": "#191b23",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#006f64"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "md": "1.5rem",
+                    "gutter": "1.5rem",
+                    "margin-mobile": "1rem",
+                    "lg": "2.5rem",
+                    "margin-desktop": "2.5rem",
+                    "sm": "1rem",
+                    "xl": "4rem",
+                    "xs": "0.5rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background: radial-gradient(circle at 0% 0%, #faf8ff 0%, #f3f3fe 100%);
+            min-height: 100vh;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+        }
+        .medical-glow {
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.08);
+        }
+        .spline-chart {
+            filter: drop-shadow(0 4px 6px rgba(0, 74, 198, 0.1));
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface pb-24">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-40 bg-surface/80 backdrop-blur-xl border-b border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.05)] flex items-center justify-between px-md h-16">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary font-bold text-headline-md" data-icon="clinical_notes">clinical_notes</span>
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">MediFlow</span>
+</div>
+<div class="flex items-center gap-sm">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-primary/5 transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/20">
+<img alt="Dr. Vance" class="w-full h-full object-cover" data-alt="A professional portrait of a senior male physician with graying hair and a confident, kind expression. He is wearing a crisp white medical coat and a stethoscope around his neck, standing against a softly blurred hospital background with cool blue tones. The lighting is bright and airy, emphasizing a high-end medical professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQKYIpvAWw3RKAdXFrbOJflLfu8RlyrmBveBYF1TFjUPcAQagiUC3MkSZeJQbWYjgbNaS6g9RKb8VoDeZPGfPYYgPcahpkYeDJArcow27G4vq4gvcTwH7pSAU8c8fgRJt5OuyCN3NA6J4BhmPtUf6J0a4GplvepVU-TCto1ocsZSYoGOSpPQL3JwPDXdIdsfgEBbSp_zsum1hQ64XTfaM4PvJWQdFjlxhLLML5Xb4M5QOHY0F6uuESSaZ3uE0vLEJF8a3wmh4rDi8"/>
+</div>
+</div>
+</header>
+<main class="mt-20 px-margin-mobile flex flex-col gap-md">
+<!-- Welcome Header -->
+<section class="flex flex-col gap-xs pt-base">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">System Overview</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Real-time status for Central Hospital Unit</p>
+</section>
+<!-- KPI Bento Grid -->
+<section class="grid grid-cols-2 gap-sm">
+<!-- KPI Card 1 -->
+<div class="glass-card p-sm rounded-xl flex flex-col gap-xs border-t border-l border-white/50">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary bg-primary-container/10 p-2 rounded-lg" data-icon="stethoscope">stethoscope</span>
+<span class="text-secondary font-label-sm text-label-sm">+2.4%</span>
+</div>
+<div>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Total Doctors</span>
+<p class="text-headline-md font-headline-md text-on-surface">1,284</p>
+</div>
+</div>
+<!-- KPI Card 2 -->
+<div class="glass-card p-sm rounded-xl flex flex-col gap-xs border-t border-l border-white/50">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary bg-primary-container/10 p-2 rounded-lg" data-icon="person">person</span>
+<span class="text-secondary font-label-sm text-label-sm">+5.1%</span>
+</div>
+<div>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Patients</span>
+<p class="text-headline-md font-headline-md text-on-surface">12,402</p>
+</div>
+</div>
+<!-- KPI Card 3 -->
+<div class="glass-card p-sm rounded-xl flex flex-col gap-xs border-t border-l border-white/50">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary bg-primary-container/10 p-2 rounded-lg" data-icon="payments">payments</span>
+<span class="text-secondary font-label-sm text-label-sm">+12%</span>
+</div>
+<div>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Revenue</span>
+<p class="text-headline-md font-headline-md text-on-surface">$2.4M</p>
+</div>
+</div>
+<!-- KPI Card 4 -->
+<div class="glass-card p-sm rounded-xl flex flex-col gap-xs border-t border-l border-white/50">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-error bg-error-container/20 p-2 rounded-lg" data-icon="bed">bed</span>
+<span class="text-error font-label-sm text-label-sm">-4%</span>
+</div>
+<div>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Available Beds</span>
+<p class="text-headline-md font-headline-md text-on-surface">82</p>
+</div>
+</div>
+</section>
+<!-- Chart Section -->
+<section class="glass-card p-md rounded-xl medical-glow border-t border-l border-white/50">
+<div class="flex items-center justify-between mb-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">Revenue Analytics</h2>
+<div class="flex items-center gap-xs text-primary font-label-sm text-label-sm bg-primary/5 px-2 py-1 rounded-full">
+                    Last 7 Days <span class="material-symbols-outlined text-[16px]" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</div>
+</div>
+<!-- Simple Decorative SVG Chart for visual flavor (Healthcare Spline style) -->
+<div class="h-40 w-full relative">
+<svg class="w-full h-full spline-chart" viewbox="0 0 400 150">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#004ac6" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#004ac6" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,120 Q50,110 80,80 T160,60 T240,100 T320,40 T400,20" fill="none" stroke="#004ac6" stroke-linecap="round" stroke-width="4"></path>
+<path d="M0,120 Q50,110 80,80 T160,60 T240,100 T320,40 T400,20 V150 H0 Z" fill="url(#chartGradient)"></path>
+<!-- Data Points -->
+<circle cx="80" cy="80" fill="#004ac6" r="4"></circle>
+<circle cx="160" cy="60" fill="#004ac6" r="4"></circle>
+<circle cx="240" cy="100" fill="#004ac6" r="4"></circle>
+<circle cx="320" cy="40" fill="#004ac6" r="4"></circle>
+</svg>
+<div class="absolute bottom-0 left-0 right-0 flex justify-between text-outline text-[10px] font-bold">
+<span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
+</div>
+</div>
+</section>
+<!-- Activity Feed Section -->
+<section class="flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-on-surface">Recent Activity</h2>
+<button class="text-primary font-label-md text-label-md">View All</button>
+</div>
+<div class="flex flex-col gap-xs">
+<!-- Activity Item 1 -->
+<div class="glass-card p-sm rounded-xl flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="emergency_hospital">emergency</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface">New Admission: ICU Wing B</p>
+<span class="text-outline text-[11px]">2 mins ago • Urgent</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Activity Item 2 -->
+<div class="glass-card p-sm rounded-xl flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="lab_research">lab_research</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface">Lab Results Released</p>
+<span class="text-outline text-[11px]">15 mins ago • Radiology</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Activity Item 3 -->
+<div class="glass-card p-sm rounded-xl flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" data-icon="receipt_long">receipt_long</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface">Bulk Invoice Generated</p>
+<span class="text-outline text-[11px]">1 hour ago • Finance</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Hospital Capacity (Bento variant) -->
+<section class="glass-card p-md rounded-xl mb-base">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-sm">Staff Capacity</h2>
+<div class="space-y-sm">
+<div class="space-y-xs">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Surgery Department</span>
+<span class="text-primary">94%</span>
+</div>
+<div class="h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[94%]"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Emergency Ward</span>
+<span class="text-secondary">78%</span>
+</div>
+<div class="h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[78%]"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 md:hidden rounded-t-xl bg-surface/70 backdrop-blur-lg border-t border-white/20 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] flex justify-around items-center h-20 px-4 pb-safe">
+<div class="flex flex-col items-center gap-1 text-primary font-bold transition-all duration-200 cursor-pointer active:scale-90">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer active:scale-90">
+<span class="material-symbols-outlined" data-icon="person_search">person_search</span>
+<span class="font-label-sm text-label-sm">Patients</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer active:scale-90 relative">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-label-sm text-label-sm">Alerts</span>
+<div class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full ring-2 ring-surface"></div>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer active:scale-90">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</div>
+</nav>
+<!-- Floating Action Button Contextual (Add New Record) -->
+<button class="fixed right-6 bottom-24 w-14 h-14 bg-primary text-on-primary rounded-full shadow-xl flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined text-[32px]" data-icon="add">add</span>
+</button>
+<script>
+        // Micro-interaction for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'scale(0.98)';
+                card.style.transition = 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simple Fade-in Animation for Page Load
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.6s ease-out';
+            requestAnimationFrame(() => {
+                document.body.style.opacity = '1';
+            });
+        });
+    </script>
+</body></html>

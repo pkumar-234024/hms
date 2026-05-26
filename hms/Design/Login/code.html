@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>MediFlow | Secure Doctor Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#0053db",
+                    "on-surface-variant": "#434655",
+                    "primary-fixed": "#dbe1ff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f0f0fb",
+                    "primary-container": "#2563eb",
+                    "on-tertiary-fixed": "#191c1e",
+                    "surface": "#faf8ff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "inverse-surface": "#2e3039",
+                    "background": "#faf8ff",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#eeefff",
+                    "on-secondary-fixed-variant": "#005048",
+                    "outline-variant": "#c3c6d7",
+                    "surface-bright": "#faf8ff",
+                    "surface-variant": "#e1e2ed",
+                    "on-surface": "#191b23",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "surface-container-high": "#e7e7f3",
+                    "inverse-primary": "#b4c5ff",
+                    "on-secondary-fixed": "#00201c",
+                    "surface-container-highest": "#e1e2ed",
+                    "tertiary": "#525657",
+                    "surface-container": "#ededf9",
+                    "error-container": "#ffdad6",
+                    "primary": "#004ac6",
+                    "on-primary-fixed": "#00174b",
+                    "secondary": "#006b5f",
+                    "surface-container-low": "#f3f3fe",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "tertiary-container": "#6b6e70",
+                    "secondary-container": "#6df5e1",
+                    "secondary-fixed": "#71f8e4",
+                    "tertiary-fixed": "#e0e3e5",
+                    "on-tertiary-fixed-variant": "#444749",
+                    "outline": "#737686",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#eff1f3",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d9d9e5",
+                    "on-background": "#191b23",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#006f64"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "md": "1.5rem",
+                    "gutter": "1.5rem",
+                    "margin-mobile": "1rem",
+                    "lg": "2.5rem",
+                    "margin-desktop": "2.5rem",
+                    "sm": "1rem",
+                    "xl": "4rem",
+                    "xs": "0.5rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 74, 198, 0.05);
+        }
+        .medical-glow {
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.08);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen flex flex-col items-center overflow-x-hidden">
+<!-- Top Navigation Bar (Branding only for Login) -->
+<header class="fixed top-0 w-full z-40 bg-surface/80 backdrop-blur-xl border-b border-white/20 shadow-sm flex items-center justify-between px-md h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">clinical_notes</span>
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">MediFlow</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary text-[20px]">help</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-md px-margin-mobile pt-24 pb-12 flex flex-col justify-center items-center relative">
+<!-- Background Atmospheric Element -->
+<div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[60%] bg-primary/5 rounded-[100%] blur-[120px] -z-10"></div>
+<!-- Login Section (Active State) -->
+<section class="w-full space-y-lg transition-all duration-500 opacity-100 scale-100" id="login-section">
+<div class="text-center space-y-xs">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Secure Provider Access</h1>
+<p class="text-on-surface-variant font-label-md text-label-md">Enter your credentials to access clinical data</p>
+</div>
+<!-- Login Card -->
+<div class="glass-panel medical-glow rounded-xl p-md space-y-md">
+<form class="space-y-md" id="login-form" onsubmit="handleLogin(event)">
+<!-- Email Field -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block px-1" for="email">Institutional Email</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full h-12 pl-12 pr-4 bg-surface-container-low border-transparent rounded-lg focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none" id="email" placeholder="dr.vance@mediflow.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center px-1">
+<label class="font-label-md text-label-md text-on-surface-variant" for="password">Password</label>
+<a class="text-primary font-label-sm text-label-sm hover:underline" href="#">Forgot Password?</a>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full h-12 pl-12 pr-4 bg-surface-container-low border-transparent rounded-lg focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none" id="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- 2FA Input -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block px-1" for="2fa">2FA Security Code</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">shield_lock</span>
+<input class="w-full h-12 pl-12 pr-4 bg-surface-container-low border-transparent rounded-lg focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all outline-none tracking-[0.5em] font-bold" id="2fa" maxlength="6" placeholder="000000" type="text"/>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full h-14 bg-gradient-to-r from-primary to-[#003ea8] text-on-primary rounded-xl font-headline-md text-label-md shadow-lg shadow-primary/20 active:scale-95 transition-transform flex items-center justify-center gap-2" type="submit">
+<span>Sign In to Portal</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</form>
+<div class="pt-base border-t border-outline-variant/30 text-center">
+<p class="text-on-surface-variant font-label-sm text-label-sm">
+                        New to the network? <a class="text-primary font-bold hover:underline transition-all" href="#">Request Access</a>
+</p>
+</div>
+</div>
+<!-- Trust Badges -->
+<div class="flex justify-center items-center gap-md opacity-60">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">HIPAA Compliant</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">lock_reset</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">AES-256 Encrypted</span>
+</div>
+</div>
+</section>
+<!-- Welcome Success State (Hidden by default) -->
+<section class="hidden w-full space-y-xl text-center transition-all duration-700 opacity-0 scale-90" id="welcome-section">
+<div class="relative mx-auto w-32 h-32">
+<div class="absolute inset-0 bg-primary/10 rounded-full animate-pulse"></div>
+<img alt="Dr. Julian Vance" class="w-full h-full rounded-full object-cover border-4 border-white shadow-xl relative z-10" data-alt="A professional, friendly close-up portrait of a male chief surgeon in a pristine white medical coat. He has a warm, confident expression. The background is a clean, bright, high-end hospital corridor with soft, diffused clinical lighting and subtle blue and white glass reflections. The aesthetic is clean, medical, and premium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6ZyjLkb14Z9bKbTPRtxu1Eie8ouZ9bSRxR99wwv6ngDJCvH79j56uxiQkVvNdWM-QMmNjdSCGk7ahI06-TmsN79Wx6ZeZdwlTW74eILh31K60eie_9j29qI8-OHKKrzMaazb5ABPqgG86jrJs_digouDJjFH0RV-mrXDj8KmP597coLBVXKmUgMb1UdT8oH-CJMRqBp36Pam4ZAgK8GVSiwzD2WWfx7BTM8aO4AhHWUh3fUSjNEFfoAAnMMlqV0MBwQ_qBuFuZIk"/>
+<div class="absolute bottom-1 right-1 bg-secondary-fixed text-on-secondary-fixed p-1 rounded-full border-2 border-white z-20">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="space-y-sm">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Welcome back,<br/>Dr. Julian Vance</h2>
+<div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-container/10 border border-primary/20 rounded-full">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-primary font-label-md text-label-md">Chief Surgeon • Ward 4B</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="glass-panel p-md rounded-xl text-left space-y-1">
+<span class="text-on-surface-variant font-label-sm text-label-sm">Active Patients</span>
+<p class="text-headline-md font-bold text-primary">24</p>
+</div>
+<div class="glass-panel p-md rounded-xl text-left space-y-1">
+<span class="text-on-surface-variant font-label-sm text-label-sm">Surgery Today</span>
+<p class="text-headline-md font-bold text-primary">03</p>
+</div>
+</div>
+<button class="w-full h-14 glass-panel text-primary font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors" onclick="window.location.reload()">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Enter Dashboard</span>
+</button>
+<p class="text-on-surface-variant font-label-sm text-label-sm opacity-60">Last sync: Just now • Terminal ID: 8829-X</p>
+</section>
+</main>
+<!-- Footer Security Information -->
+<footer class="w-full max-w-md px-margin-mobile text-center pb-8 mt-auto">
+<div class="p-4 bg-surface-container-high/50 rounded-xl border border-white/20">
+<p class="text-[11px] text-on-surface-variant leading-relaxed">
+                Unauthorized access to this health information system is strictly prohibited and subject to legal action. All activity is logged and monitored for clinical compliance and security auditing purposes.
+            </p>
+</div>
+</footer>
+<script>
+        function handleLogin(event) {
+            event.preventDefault();
+            const loginSection = document.getElementById('login-section');
+            const welcomeSection = document.getElementById('welcome-section');
+            const submitBtn = event.target.querySelector('button');
+
+            // Visual feedback
+            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Authenticating...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                // Animate out login
+                loginSection.classList.add('opacity-0', '-translate-y-4', 'scale-95');
+                
+                setTimeout(() => {
+                    loginSection.classList.add('hidden');
+                    welcomeSection.classList.remove('hidden');
+                    
+                    // Trigger reflow for transition
+                    void welcomeSection.offsetWidth;
+                    
+                    // Animate in welcome
+                    welcomeSection.classList.remove('opacity-0', 'scale-90');
+                    welcomeSection.classList.add('opacity-100', 'scale-100');
+                }, 500);
+            }, 1500);
+        }
+
+        // Add subtle movement to the background glow
+        document.addEventListener('mousemove', (e) => {
+            const glow = document.querySelector('.bg-primary\\/5');
+            const x = (e.clientX / window.innerWidth - 0.5) * 40;
+            const y = (e.clientY / window.innerHeight - 0.5) * 40;
+            glow.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+        });
+    </script>
+</body></html>

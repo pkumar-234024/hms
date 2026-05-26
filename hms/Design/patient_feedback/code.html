@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>MediFlow | Patient Feedback</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#0053db",
+                        "on-surface-variant": "#434655",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f0f0fb",
+                        "primary-container": "#2563eb",
+                        "on-tertiary-fixed": "#191c1e",
+                        "surface": "#faf8ff",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#4fdbc8",
+                        "inverse-surface": "#2e3039",
+                        "background": "#faf8ff",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#eeefff",
+                        "on-secondary-fixed-variant": "#005048",
+                        "outline-variant": "#c3c6d7",
+                        "surface-bright": "#faf8ff",
+                        "surface-variant": "#e1e2ed",
+                        "on-surface": "#191b23",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "surface-container-high": "#e7e7f3",
+                        "inverse-primary": "#b4c5ff",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-container-highest": "#e1e2ed",
+                        "tertiary": "#525657",
+                        "surface-container": "#ededf9",
+                        "error-container": "#ffdad6",
+                        "primary": "#004ac6",
+                        "on-primary-fixed": "#00174b",
+                        "secondary": "#006b5f",
+                        "surface-container-low": "#f3f3fe",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "tertiary-container": "#6b6e70",
+                        "secondary-container": "#6df5e1",
+                        "secondary-fixed": "#71f8e4",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "outline": "#737686",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#eff1f3",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#d9d9e5",
+                        "on-background": "#191b23",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#006f64"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "md": "1.5rem",
+                        "gutter": "1.5rem",
+                        "margin-mobile": "1rem",
+                        "lg": "2.5rem",
+                        "margin-desktop": "2.5rem",
+                        "sm": "1rem",
+                        "xl": "4rem",
+                        "xs": "0.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .star-active {
+            color: #FFD700;
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
+<!-- Top AppBar -->
+<header class="fixed top-0 w-full z-40 bg-surface/80 backdrop-blur-xl border-b border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.1)] flex items-center justify-between px-md h-16">
+<div class="flex items-center gap-2 cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<span class="font-headline-md text-headline-md-mobile font-bold text-primary tracking-tight">MediFlow</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-primary/5 transition-colors p-2 rounded-full" data-icon="notifications">notifications</button>
+</div>
+</header>
+<main class="pt-24 px-margin-mobile flex flex-col gap-lg max-w-lg mx-auto">
+<!-- Hero Section -->
+<section class="text-center">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Your Voice Matters</h1>
+<p class="text-on-surface-variant font-body-md">Help us improve the MediFlow experience by sharing your recent visit feedback.</p>
+</section>
+<!-- Feedback Form Card -->
+<div class="glass-card rounded-xl p-md flex flex-col gap-md">
+<!-- Professional Rating -->
+<div>
+<label class="font-label-md text-on-surface-variant block mb-base">Rate your experience</label>
+<div class="flex justify-center gap-xs py-2" id="star-rating">
+<span class="material-symbols-outlined text-4xl cursor-pointer text-outline hover:scale-110 transition-transform" data-icon="star" onclick="setRating(1)">star</span>
+<span class="material-symbols-outlined text-4xl cursor-pointer text-outline hover:scale-110 transition-transform" data-icon="star" onclick="setRating(2)">star</span>
+<span class="material-symbols-outlined text-4xl cursor-pointer text-outline hover:scale-110 transition-transform" data-icon="star" onclick="setRating(3)">star</span>
+<span class="material-symbols-outlined text-4xl cursor-pointer text-outline hover:scale-110 transition-transform" data-icon="star" onclick="setRating(4)">star</span>
+<span class="material-symbols-outlined text-4xl cursor-pointer text-outline hover:scale-110 transition-transform" data-icon="star" onclick="setRating(5)">star</span>
+</div>
+</div>
+<!-- Emoji Reactions -->
+<div>
+<label class="font-label-md text-on-surface-variant block mb-base">How do you feel today?</label>
+<div class="flex justify-between px-xs">
+<button class="emoji-btn p-3 rounded-xl hover:bg-primary-container/10 transition-all flex flex-col items-center gap-1 grayscale opacity-60 active:grayscale-0 active:opacity-100" onclick="selectEmoji(this)">
+<span class="text-2xl">😞</span>
+<span class="font-label-sm text-on-surface-variant">Poor</span>
+</button>
+<button class="emoji-btn p-3 rounded-xl hover:bg-primary-container/10 transition-all flex flex-col items-center gap-1 grayscale opacity-60 active:grayscale-0 active:opacity-100" onclick="selectEmoji(this)">
+<span class="text-2xl">😐</span>
+<span class="font-label-sm text-on-surface-variant">Okay</span>
+</button>
+<button class="emoji-btn p-3 rounded-xl hover:bg-primary-container/10 transition-all flex flex-col items-center gap-1 grayscale opacity-60 active:grayscale-0 active:opacity-100" onclick="selectEmoji(this)">
+<span class="text-2xl">😊</span>
+<span class="font-label-sm text-on-surface-variant">Good</span>
+</button>
+<button class="emoji-btn p-3 rounded-xl hover:bg-primary-container/10 transition-all flex flex-col items-center gap-1 grayscale opacity-60 active:grayscale-0 active:opacity-100" onclick="selectEmoji(this)">
+<span class="text-2xl">🤩</span>
+<span class="font-label-sm text-on-surface-variant">Great</span>
+</button>
+</div>
+</div>
+<!-- Comment Area -->
+<div>
+<label class="font-label-md text-on-surface-variant block mb-base">Share more details</label>
+<textarea class="w-full h-32 p-md rounded-xl bg-surface-container-low border-none focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-outline resize-none font-body-md" placeholder="How was your consultation with Dr. Vance?"></textarea>
+</div>
+<button class="w-full bg-primary py-md rounded-xl text-on-primary font-label-md flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-[0.98] transition-all">
+                Submit Feedback
+                <span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
+</button>
+</div>
+<!-- Carousel Section -->
+<section class="flex flex-col gap-sm">
+<div class="flex items-center justify-between px-xs">
+<h3 class="font-label-md text-on-surface-variant uppercase tracking-wider">Patient Testimonials</h3>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-full flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors" onclick="scrollTestimonials(-1)">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors" onclick="scrollTestimonials(1)">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-md overflow-x-auto hide-scrollbar snap-x snap-mandatory scroll-smooth pb-4" id="testimonial-container">
+<!-- Testimonial 1 -->
+<div class="min-w-[280px] snap-center glass-card rounded-xl p-md flex flex-col gap-sm">
+<div class="flex items-center gap-sm">
+<img alt="Patient" class="w-10 h-10 rounded-full object-cover" data-alt="Close up portrait of a smiling middle aged woman with glasses in a bright sunlit office setting, representing a satisfied patient. The lighting is warm and natural, reinforcing a trustworthy healthcare aesthetic with soft blue tones in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAylNBQOTdtztnBVYFMIV6VA48RjIs823IrNHKniK8tk4biWIMIGftvCwpfd8vSz5BmR0tJ9H585siBAfKzdDuwgbwNRzy82FhnE2bj3WFX1HUd5ZwqryXeGAJMko2jbzy3JEsu3AdkTiJAcAINdtdtnHOm8aoM6bDL8Qn3EECtj9Pkcj0HE7s8iTV87U_cMoGnlpKqUMoryJ1LQMtd2JQtMp4cKgCpJSHyywzr4PVk6kvQFylepyUnXsKJi_MceDlLT9CAM9CHe3M"/>
+<div>
+<p class="font-label-md text-on-surface">Sarah J.</p>
+<div class="flex text-yellow-500">
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<p class="text-label-md text-on-surface-variant italic">"The process was so smooth. Dr. Vance took the time to explain everything clearly."</p>
+</div>
+<!-- Testimonial 2 -->
+<div class="min-w-[280px] snap-center glass-card rounded-xl p-md flex flex-col gap-sm">
+<div class="flex items-center gap-sm">
+<img alt="Patient" class="w-10 h-10 rounded-full object-cover" data-alt="Professional headshot of a diverse man in his 30s with a kind expression, set against a clean, minimalist clinical backdrop. The color palette is composed of soft whites and calm blues, emphasizing a high-end medical SaaS interface design with premium lighting and depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLCRhiKwyuNPLr7bhY5QENsAy-6sEVmBgKEMlkEhlc_BbRZ5EwmdmpYSF8ajjsuwEAyf_LcTivqDCKgWd3x5C8rynQbK9_iamI99QWkY0jySZvTIJ93S-WCGzDuKgPD3MZSi9z6eLTBuRG_uSGsKss7sPrnn5voLriU6YCS5pP0LDRAQuthjmOGMCtjh0Gq0m1JPTo1JSDlqkGUQlgBi75bPCt6goxYvMhyB3xFhtiSp0O5on3Q9QGdIJZWk3poGgsgrTovHJl6c4"/>
+<div>
+<p class="font-label-md text-on-surface">Marcus T.</p>
+<div class="flex text-yellow-500">
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 0;">star</span>
+</div>
+</div>
+</div>
+<p class="text-label-md text-on-surface-variant italic">"Efficient and modern. The analytics tools really help me stay on track with my recovery."</p>
+</div>
+<!-- Testimonial 3 -->
+<div class="min-w-[280px] snap-center glass-card rounded-xl p-md flex flex-col gap-sm">
+<div class="flex items-center gap-sm">
+<img alt="Patient" class="w-10 h-10 rounded-full object-cover" data-alt="A cheerful young woman in a modern healthcare environment, looking directly into the camera with a confident smile. The background is softly blurred with glass partitions and technological elements, maintaining a consistent premium light-mode healthcare aesthetic using primary blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8i2g2XixJFU6jwBMuCr_lCtd0sOdWnSedhm_oGegZv2mTkpyvgcQNraThmab6nrY4uA2ZCGv88rIWFrQe0L-4vrwvlUp29yg3CGFENJ_zzO9ThphTwO3PoMx5ZRFF9UmmygbKINRb0ojmVmvKFbaxSHGRvfIHDScd9-taGOj1GNozQ_8novYSkci4WxEeUyzRcFtnVOUFmbkGd4AloWIrxVmCdam5ODQoGB5hQylUbFrfiACvL-ZJkVLGJj1Jnrvdm22sM8KWn1o"/>
+<div>
+<p class="font-label-md text-on-surface">Elena R.</p>
+<div class="flex text-yellow-500">
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<p class="text-label-md text-on-surface-variant italic">"Best clinical experience I've had. The interface is intuitive and very helpful."</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="fixed bottom-0 w-full z-50 md:hidden rounded-t-xl bg-surface/70 backdrop-blur-lg border-t border-white/20 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] flex justify-around items-center h-20 px-4 pb-safe">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant transition-all duration-200 active:bg-primary/5" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant transition-all duration-200 active:bg-primary/5" href="#">
+<span class="material-symbols-outlined" data-icon="person_search">person_search</span>
+<span class="font-label-sm text-label-sm">Patients</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant transition-all duration-200 active:bg-primary/5" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-label-sm text-label-sm">Alerts</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary font-bold transition-all duration-200 active:bg-primary/5" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        function setRating(rating) {
+            const stars = document.querySelectorAll('#star-rating span');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('star-active');
+                    star.style.fontVariationSettings = "'FILL' 1";
+                } else {
+                    star.classList.remove('star-active');
+                    star.style.fontVariationSettings = "'FILL' 0";
+                }
+            });
+        }
+
+        function selectEmoji(btn) {
+            const btns = document.querySelectorAll('.emoji-btn');
+            btns.forEach(b => {
+                b.classList.add('grayscale', 'opacity-60');
+                b.classList.remove('bg-primary-container/20', 'grayscale-0', 'opacity-100');
+            });
+            btn.classList.remove('grayscale', 'opacity-60');
+            btn.classList.add('bg-primary-container/20', 'grayscale-0', 'opacity-100');
+        }
+
+        function scrollTestimonials(direction) {
+            const container = document.getElementById('testimonial-container');
+            const scrollAmount = 300;
+            container.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        // Add visual weight for the feedback submission
+        document.querySelector('button.bg-primary').addEventListener('click', function() {
+            this.innerHTML = '<span class="material-symbols-outlined animate-spin" data-icon="sync">sync</span> Sending...';
+            setTimeout(() => {
+                this.innerHTML = 'Thank You! <span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>';
+                this.classList.replace('bg-primary', 'bg-secondary');
+            }, 1500);
+        });
+    </script>
+</body></html>

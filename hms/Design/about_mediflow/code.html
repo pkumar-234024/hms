@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About MediFlow | Premium Healthcare SaaS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#0053db",
+                    "on-surface-variant": "#434655",
+                    "primary-fixed": "#dbe1ff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f0f0fb",
+                    "primary-container": "#2563eb",
+                    "on-tertiary-fixed": "#191c1e",
+                    "surface": "#faf8ff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "inverse-surface": "#2e3039",
+                    "background": "#faf8ff",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#eeefff",
+                    "on-secondary-fixed-variant": "#005048",
+                    "outline-variant": "#c3c6d7",
+                    "surface-bright": "#faf8ff",
+                    "surface-variant": "#e1e2ed",
+                    "on-surface": "#191b23",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "surface-container-high": "#e7e7f3",
+                    "inverse-primary": "#b4c5ff",
+                    "on-secondary-fixed": "#00201c",
+                    "surface-container-highest": "#e1e2ed",
+                    "tertiary": "#525657",
+                    "surface-container": "#ededf9",
+                    "error-container": "#ffdad6",
+                    "primary": "#004ac6",
+                    "on-primary-fixed": "#00174b",
+                    "secondary": "#006b5f",
+                    "surface-container-low": "#f3f3fe",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "tertiary-container": "#6b6e70",
+                    "secondary-container": "#6df5e1",
+                    "secondary-fixed": "#71f8e4",
+                    "tertiary-fixed": "#e0e3e5",
+                    "on-tertiary-fixed-variant": "#444749",
+                    "outline": "#737686",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#eff1f3",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d9d9e5",
+                    "on-background": "#191b23",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#006f64"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "md": "1.5rem",
+                    "gutter": "1.5rem",
+                    "margin-mobile": "1rem",
+                    "lg": "2.5rem",
+                    "margin-desktop": "2.5rem",
+                    "sm": "1rem",
+                    "xl": "4rem",
+                    "xs": "0.5rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .medical-glow {
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.08);
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed-variant">
+<!-- Top AppBar -->
+<header class="fixed top-0 w-full z-40 bg-surface/80 backdrop-blur-xl border-b border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.1)] flex items-center justify-between px-md h-16">
+<div class="flex items-center gap-xs cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary font-headline-md text-headline-md" data-icon="clinical_notes">clinical_notes</span>
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">MediFlow</span>
+</div>
+<div class="cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</div>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile flex flex-col gap-xl">
+<!-- Hero & Mission Section -->
+<section class="flex flex-col gap-sm">
+<span class="text-primary font-label-md text-label-md tracking-widest uppercase">Our Mission</span>
+<h1 class="font-display-lg text-display-lg leading-tight text-on-surface">Precision in Care, <span class="text-primary-container">Clarity in Data.</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                We bridge the gap between complex medical diagnostics and actionable patient insights through our premium healthcare ecosystem.
+            </p>
+<div class="mt-md rounded-xl overflow-hidden glass-panel medical-glow h-48 w-full relative">
+<img alt="Medical Innovation" class="w-full h-full object-cover opacity-90" data-alt="A futuristic medical research laboratory with soft blue ambient lighting and clean white surfaces. Scientists in minimalist white clinical attire are interacting with high-tech transparent displays showing molecular health data. The atmosphere is serene, high-end, and sterile, embodying professional medical precision. The overall aesthetic uses the brand's primary blue and soft neutral tones for a premium healthcare feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKTdSfVaz37fnQgBU6YP3-7TRt70WZRSwOhkdF8OAuGzI52-y0AgUjaYpoElKPNaDiuzUDyFH5aeM38dq78P_83-KCs4JuiwUEfH2xUxvLrguL00B4VZ53JfCgvWnh2IXBV5nhKmNtfeJd4MD008i5QHHswG7ICfAFyUFPpzGeh_1zJ-ADmGG7mGOSZUrxnnCFNLlF1dXJMqB5nq15fqerIloB0LIEeecvqMQhaYwJSYEA7-2nXnMwoUtLKWAhmbOLWs1ZupjhyLo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
+</div>
+</section>
+<!-- Stats Counter Section -->
+<section class="grid grid-cols-2 gap-md">
+<div class="glass-panel p-md rounded-xl medical-glow flex flex-col gap-xs border-t-white/30 border-l-white/30">
+<span class="font-headline-md text-headline-md text-primary">2.4M</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Patients Managed</span>
+</div>
+<div class="glass-panel p-md rounded-xl medical-glow flex flex-col gap-xs">
+<span class="font-headline-md text-headline-md text-secondary">99.9%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Uptime Accuracy</span>
+</div>
+<div class="glass-panel p-md rounded-xl medical-glow flex flex-col gap-xs">
+<span class="font-headline-md text-headline-md text-tertiary">150+</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Global Clinics</span>
+</div>
+<div class="glass-panel p-md rounded-xl medical-glow flex flex-col gap-xs">
+<span class="font-headline-md text-headline-md text-primary-container">24/7</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Clinical Support</span>
+</div>
+</section>
+<!-- Specialists Showcase -->
+<section class="flex flex-col gap-md">
+<div class="flex justify-between items-end">
+<h2 class="font-headline-md text-headline-md text-on-surface">World-Class<br/>Specialists</h2>
+<span class="text-primary font-label-md text-label-md cursor-pointer hover:underline">View All</span>
+</div>
+<div class="flex overflow-x-auto gap-md hide-scrollbar pb-sm -mx-margin-mobile px-margin-mobile">
+<!-- Card 1 -->
+<div class="flex-shrink-0 w-64 glass-panel rounded-xl overflow-hidden medical-glow border-t-white/40 border-l-white/40">
+<div class="h-72 w-full relative">
+<img alt="Dr. Sarah Chen" class="w-full h-full object-cover" data-alt="A portrait of a professional female doctor in a crisp white lab coat, standing against a blurred clinical background with soft, high-key lighting. Her expression is warm and confident, representing high-end medical expertise. The color palette is composed of clean whites, soft greys, and subtle medical blue accents, maintaining a premium and trustworthy aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDWtlUU9m0-97plv9JeJj2CuBqRiA0-uI6R4uDPhdIJ3zCFr6YS_UCL9YuLXfBkSXJUV6paLwoV5rFHOCeK5BR3oBBSzfvi8KRWn1B-XzHLeMgnMw-q1qYv9k8tle1JagBwv98pGYY2Rlslqo52jDCmpfhzv2atBESHE6d9EVU9ZEv96ixrrYNR7ZyA1xIRLRduS96K-okpAikI5VhK3bmk-ir477PRncxmhMRsSiyzDzA76o8cYDD8Ln-_yw825lngZHzy12GYTM"/>
+<div class="absolute bottom-0 left-0 right-0 p-md bg-gradient-to-t from-surface to-transparent">
+<span class="font-label-sm text-label-sm text-primary uppercase bg-primary-fixed/50 px-2 py-0.5 rounded-full">Neurosurgeon</span>
+</div>
+</div>
+<div class="p-md flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface">Dr. Sarah Chen</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Oxford University, PhD</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex-shrink-0 w-64 glass-panel rounded-xl overflow-hidden medical-glow">
+<div class="h-72 w-full relative">
+<img alt="Dr. Marcus Thorne" class="w-full h-full object-cover" data-alt="A professional male cardiologist in a modern clinic, looking towards the camera with a calm and reliable demeanor. He wears a premium navy blue scrub top. The setting is bright and spacious with elegant medical equipment subtly visible in the background. The lighting is soft and flattering, emphasizing a high-standard healthcare environment in a light-mode theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX9TwdkExGhBksrZgIEGl6WCdaAkCmedvAztZ5uHYeIL9o6syX98qdOypuEwl4AetOJRA3wONJqX3yFeL_5US_ZiumxVRBxu93QrY-PlkUIVMSMAsviwdEyctRfsy3VtjMr_VFBkttAmKNMNU_VZfZCiu9nXHcBvKaPFMeavk52bAo0Xb_iQvClTwBdKOlFwwGIuwGWL1b8MoeNFovynSKCBkIMYBLQAtnGFBeIpMnYTAOHNas7ZB690ioDooZ0n8xZVHW1INVq3U"/>
+<div class="absolute bottom-0 left-0 right-0 p-md bg-gradient-to-t from-surface to-transparent">
+<span class="font-label-sm text-label-sm text-secondary-fixed-variant uppercase bg-secondary-container/50 px-2 py-0.5 rounded-full">Cardiologist</span>
+</div>
+</div>
+<div class="p-md flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface">Dr. Marcus Thorne</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Stanford Medical Center</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials Carousel -->
+<section class="flex flex-col gap-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">Clinical Experience</h2>
+<div class="relative overflow-hidden glass-panel rounded-xl p-md medical-glow transition-all duration-500 min-h-[160px] flex items-center" id="testimonial-container">
+<div class="testimonial-slide active">
+<span class="material-symbols-outlined text-primary-fixed-variant text-4xl mb-sm" data-icon="format_quote">format_quote</span>
+<p class="font-body-md text-body-md text-on-surface italic mb-md">
+                        "MediFlow has transformed how we visualize patient trajectory. The precision of their analytics dashboard is unparalleled in the current market."
+                    </p>
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center">
+<span class="font-label-md text-label-md text-primary font-bold">EH</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Dr. Elena Hunt</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Director, St. Jude’s Cardiac Unit</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex gap-xs justify-center mt-xs">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+</section>
+<!-- Values Section -->
+<section class="flex flex-col gap-md mb-8">
+<div class="glass-panel p-md rounded-xl flex gap-md items-center">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="security">security</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Uncompromising Security</span>
+<span class="font-body-md text-body-md text-on-surface-variant">HIPAA compliant architecture for every record.</span>
+</div>
+</div>
+<div class="glass-panel p-md rounded-xl flex gap-md items-center">
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">AI Integration</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Smart diagnostics powered by machine learning.</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom NavBar -->
+<nav class="fixed bottom-0 w-full z-50 md:hidden rounded-t-xl bg-surface/70 backdrop-blur-lg border-t border-white/20 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] flex justify-around items-center h-20 px-4 pb-safe">
+<div class="flex flex-col items-center gap-1 text-on-surface-variant active:bg-primary/5 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant active:bg-primary/5 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="person_search">person_search</span>
+<span class="font-label-sm text-label-sm">Patients</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant active:bg-primary/5 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-label-sm text-label-sm">Alerts</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary font-bold active:bg-primary/5 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</div>
+</nav>
+<script>
+        // Micro-interaction for Stats
+        document.addEventListener('DOMContentLoaded', () => {
+            const stats = document.querySelectorAll('.glass-panel span.text-headline-md');
+            stats.forEach(stat => {
+                stat.addEventListener('mouseenter', () => {
+                    stat.parentElement.style.transform = 'translateY(-4px) scale(1.02)';
+                });
+                stat.parentElement.addEventListener('mouseleave', () => {
+                    stat.parentElement.style.transform = 'translateY(0) scale(1)';
+                });
+                stat.parentElement.style.transition = 'transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1)';
+            });
+        });
+
+        // Simple Testimonial Carousel Interaction
+        const testimonials = [
+            {
+                quote: "MediFlow has transformed how we visualize patient trajectory. The precision of their analytics dashboard is unparalleled.",
+                author: "Dr. Elena Hunt",
+                role: "Director, St. Jude’s Cardiac Unit",
+                initials: "EH"
+            },
+            {
+                quote: "The interface is intuitive and clear, reducing our administrative overhead by nearly 40% in just six months.",
+                author: "James Sterling",
+                role: "Hospital Administrator",
+                initials: "JS"
+            }
+        ];
+        
+        let currentIdx = 0;
+        const container = document.getElementById('testimonial-container');
+        
+        setInterval(() => {
+            container.style.opacity = '0';
+            setTimeout(() => {
+                currentIdx = (currentIdx + 1) % testimonials.length;
+                const t = testimonials[currentIdx];
+                container.innerHTML = `
+                    <div class="testimonial-slide active w-full">
+                        <span class="material-symbols-outlined text-primary-fixed-variant text-4xl mb-sm" data-icon="format_quote">format_quote</span>
+                        <p class="font-body-md text-body-md text-on-surface italic mb-md">"${t.quote}"</p>
+                        <div class="flex items-center gap-sm">
+                            <div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center">
+                                <span class="font-label-md text-label-md text-primary font-bold">${t.initials}</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="font-label-md text-label-md text-on-surface">${t.author}</span>
+                                <span class="font-label-sm text-label-sm text-on-surface-variant">${t.role}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.style.opacity = '1';
+            }, 500);
+        }, 5000);
+    </script>
+</body></html>

@@ -1,0 +1,2084 @@
+{
+  "x-generator": "NSwag v14.6.2.0 (NJsonSchema v11.5.2.0 (Newtonsoft.Json v13.0.0.0))",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Clean Architecture API",
+    "description": "HTTP endpoints for the Clean Architecture sample application.",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://localhost:57679"
+    }
+  ],
+  "paths": {
+    "/hospitals": {
+      "get": {
+        "tags": [
+          "Hospitals"
+        ],
+        "summary": "List hospitals",
+        "description": "Returns the available hospitals that patients can book into.",
+        "operationId": "HospitalManagementSystemWebHospitalsListHospitals",
+        "responses": {
+          "200": {
+            "description": "Hospitals returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HospitalDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/doctors": {
+      "get": {
+        "tags": [
+          "Doctors"
+        ],
+        "summary": "List available doctors",
+        "description": "Returns all users assigned to the Doctor role so patients can book appointments.",
+        "operationId": "HospitalManagementSystemWebDoctorsListDoctors",
+        "parameters": [
+          {
+            "name": "hospitalId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Doctors returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DoctorRecord"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Contributors": {
+      "post": {
+        "tags": [
+          "Contributors"
+        ],
+        "summary": "Create a new contributor",
+        "description": "Creates a new contributor with the provided name. The contributor name must be between 2 and 100 characters long.",
+        "operationId": "HospitalManagementSystemWebContributorsCreate",
+        "requestBody": {
+          "x-name": "CreateContributorRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateContributorRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "Contributor created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateContributorResponse"
+                },
+                "example": {
+                  "id": 1,
+                  "name": "John Doe"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data - validation errors",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Contributors"
+        ],
+        "summary": "List contributors with pagination",
+        "description": "Retrieves a paginated list of all contributors. Supports GitHub-style pagination with 1-based page indexing and configurable page size.",
+        "operationId": "HospitalManagementSystemWebContributorsList",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "description": "1-based page index (default 1)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 1
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated list of contributors returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContributorListResponse"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": 1,
+                      "name": "John Doe",
+                      "phoneNumber": " "
+                    },
+                    {
+                      "id": 2,
+                      "name": "Jane Smith",
+                      "phoneNumber": " "
+                    }
+                  ],
+                  "page": 1,
+                  "perPage": 10,
+                  "totalCount": 2,
+                  "totalPages": 1
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid pagination parameters",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Contributors/{contributorId}": {
+      "delete": {
+        "tags": [
+          "Contributors"
+        ],
+        "summary": "Delete a contributor",
+        "description": "Deletes an existing contributor by ID. This action cannot be undone.",
+        "operationId": "HospitalManagementSystemWebContributorsDelete",
+        "parameters": [
+          {
+            "name": "contributorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Contributor deleted successfully"
+          },
+          "400": {
+            "description": "Invalid request or deletion failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contributor not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Contributors"
+        ],
+        "summary": "Get a contributor by ID",
+        "description": "Retrieves a specific contributor by their unique identifier. Returns detailed contributor information including ID and name.",
+        "operationId": "HospitalManagementSystemWebContributorsGetById",
+        "parameters": [
+          {
+            "name": "contributorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contributor found and returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContributorRecord"
+                },
+                "example": {
+                  "id": 1,
+                  "name": "John Doe",
+                  "phoneNumber": "+1 555-555-5555"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contributor with specified ID not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Contributors"
+        ],
+        "summary": "Update a contributor",
+        "description": "Updates an existing contributor's information. The contributor name must be between 2 and 100 characters long.",
+        "operationId": "HospitalManagementSystemWebContributorsUpdate",
+        "parameters": [
+          {
+            "name": "contributorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 0
+          }
+        ],
+        "requestBody": {
+          "x-name": "UpdateContributorRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateContributorRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Contributor updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateContributorResponse"
+                },
+                "example": {
+                  "contributor": {
+                    "id": 1,
+                    "name": "Updated Name",
+                    "phoneNumber": ""
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data or business rule violation",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contributor with specified ID not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/admin/reset-password/{userId}": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Admin Reset Password",
+        "description": "Allows admin to reset a user's password.",
+        "operationId": "HospitalManagementSystemWebAuthenticationAdminResetPassword",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "user-id"
+          }
+        ],
+        "requestBody": {
+          "x-name": "AdminResetPasswordRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminResetPasswordRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Password reset failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "Admin"
+            ]
+          }
+        ]
+      }
+    },
+    "/auth/google": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Google Authentication",
+        "description": "Authenticates user using Google ID token.",
+        "operationId": "HospitalManagementSystemWebAuthenticationGoogleAuth",
+        "requestBody": {
+          "x-name": "GoogleAuthRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoogleAuthRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Google authentication successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Google authentication failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/forgot-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Forgot Password",
+        "description": "Sends password reset email to the user.",
+        "operationId": "HospitalManagementSystemWebAuthenticationForgotPassword",
+        "requestBody": {
+          "x-name": "ForgotPasswordRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset email sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed to process password reset request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/status": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Get Authentication Status",
+        "description": "Returns current authenticated user status.",
+        "operationId": "HospitalManagementSystemWebAuthenticationGetAuthStatus",
+        "responses": {
+          "200": {
+            "description": "Authentication status retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthStatusResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/google/config": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Get Google OAuth Configuration",
+        "description": "Returns Google OAuth configuration for frontend authentication.",
+        "operationId": "HospitalManagementSystemWebAuthenticationGetGoogleConfig",
+        "responses": {
+          "200": {
+            "description": "Google OAuth configuration retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GoogleConfigResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "User Login",
+        "description": "Authenticates a user and returns access and refresh tokens.",
+        "operationId": "HospitalManagementSystemWebAuthenticationLogin",
+        "requestBody": {
+          "x-name": "LoginRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid credentials or validation errors",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Logout",
+        "description": "Logs out the current user and clears authentication cookies.",
+        "operationId": "HospitalManagementSystemWebAuthenticationLogout",
+        "responses": {
+          "200": {
+            "description": "Logged out successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/refresh-token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Refresh Access Token",
+        "description": "Refreshes access token using a valid refresh token.",
+        "operationId": "HospitalManagementSystemWebAuthenticationRefreshToken",
+        "requestBody": {
+          "x-name": "RefreshTokenRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Token refreshed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or expired refresh token"
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "User Registration",
+        "description": "Registers a new user and returns authentication tokens.",
+        "operationId": "HospitalManagementSystemWebAuthenticationRegister",
+        "requestBody": {
+          "x-name": "RegisterRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "Registration successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation failed or registration error",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/resend-verification-email": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Resend Verification Email",
+        "description": "Sends a new email verification link to the user.",
+        "operationId": "HospitalManagementSystemWebAuthenticationResendVerificationEmail",
+        "requestBody": {
+          "x-name": "ResendVerificationEmailRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResendVerificationEmailRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Verification email sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid email address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/reset-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Reset Password",
+        "description": "Resets user password using reset token.",
+        "operationId": "HospitalManagementSystemWebAuthenticationResetPassword",
+        "requestBody": {
+          "x-name": "ResetPasswordRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Password reset failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/validate-token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Validate Token",
+        "description": "Validates JWT token and returns token status.",
+        "operationId": "HospitalManagementSystemWebAuthenticationValidateToken",
+        "requestBody": {
+          "x-name": "ValidateTokenRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateTokenRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Token validation completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateTokenResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/verify-email": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Verify Email",
+        "description": "Verifies user email using verification token.",
+        "operationId": "HospitalManagementSystemWebAuthenticationVerifyEmail",
+        "requestBody": {
+          "x-name": "EmailVerificationRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailVerificationRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Email verified successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email verification failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/appointments/{appointmentId}/approve": {
+      "post": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Approve an appointment",
+        "description": "Approves a pending appointment. Doctors can only approve appointments assigned to them.",
+        "operationId": "HospitalManagementSystemWebAppointmentsApproveAppointment",
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Appointment approved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "You do not have permission to approve this appointment"
+          },
+          "404": {
+            "description": "Appointment not found"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "Admin",
+              "Doctor",
+              "Receptionist"
+            ]
+          }
+        ]
+      }
+    },
+    "/appointments": {
+      "post": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Book a new appointment",
+        "description": "Creates a pending appointment request without requiring a login.",
+        "operationId": "HospitalManagementSystemWebAppointmentsCreate",
+        "requestBody": {
+          "x-name": "CreateAppointmentRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAppointmentRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "Appointment created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "List appointments",
+        "description": "Returns a paginated list of appointments for staff review.",
+        "operationId": "HospitalManagementSystemWebAppointmentsListAppointments",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "nullable": true,
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/AppointmentStatus"
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Appointments returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedResultOfAppointmentDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "Admin",
+              "Doctor",
+              "Receptionist"
+            ]
+          }
+        ]
+      }
+    },
+    "/appointments/{appointmentId}/decline": {
+      "post": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Decline an appointment",
+        "description": "Declines a pending appointment with an optional note.",
+        "operationId": "HospitalManagementSystemWebAppointmentsDeclineAppointment",
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            }
+          }
+        ],
+        "requestBody": {
+          "x-name": "DeclineAppointmentRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeclineAppointmentRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "Appointment declined",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "You do not have permission to decline this appointment"
+          },
+          "404": {
+            "description": "Appointment not found"
+          }
+        },
+        "security": [
+          {
+            "JWTBearerAuth": [
+              "Admin",
+              "Doctor",
+              "Receptionist"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HospitalDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "DoctorRecord": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "hospitalId": {
+            "type": "string",
+            "format": "guid",
+            "nullable": true
+          }
+        }
+      },
+      "ListDoctorsRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CreateContributorResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "additionalProperties": {
+          "nullable": true
+        },
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CreateContributorRequest": {
+        "type": "object",
+        "example": {
+          "name": "John Doe",
+          "phoneNumber": null
+        },
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 2,
+            "nullable": false,
+            "example": "John Doe"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true,
+            "example": null
+          }
+        }
+      },
+      "DeleteContributorRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ContributorRecord": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "GetContributorByIdRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "description": "the dto used to send an error response to the client",
+        "additionalProperties": false,
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "description": "the http status code sent to the client. default is 400.",
+            "format": "int32",
+            "default": 400
+          },
+          "message": {
+            "type": "string",
+            "description": "the message for the error response",
+            "default": "One or more errors occurred!"
+          },
+          "errors": {
+            "type": "object",
+            "description": "the collection of errors for the current context",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ContributorListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PagedResultOfContributorRecord"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "PagedResultOfContributorRecord": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContributorRecord"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "perPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ListContributorsRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "UpdateContributorResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "contributor": {
+            "$ref": "#/components/schemas/ContributorRecord"
+          }
+        }
+      },
+      "UpdateContributorRequest": {
+        "type": "object",
+        "example": {
+          "id": 1,
+          "name": "Updated Name"
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 2,
+            "nullable": false,
+            "example": "Updated Name"
+          }
+        }
+      },
+      "MessageResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "AdminResetPasswordRequest": {
+        "type": "object",
+        "example": {
+          "newPassword": "Admin@123"
+        },
+        "additionalProperties": false,
+        "required": [
+          "newPassword"
+        ],
+        "properties": {
+          "newPassword": {
+            "type": "string",
+            "minLength": 6,
+            "nullable": false,
+            "example": "Admin@123"
+          }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserDto"
+          },
+          "accessToken": {
+            "type": "string"
+          },
+          "refreshToken": {
+            "type": "string"
+          },
+          "accessTokenExpires": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "refreshTokenExpires": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "emailVerified": {
+            "type": "boolean"
+          },
+          "isAccountLocked": {
+            "type": "boolean"
+          }
+        }
+      },
+      "UserDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "profilePicture": {
+            "type": "string"
+          },
+          "hospitalId": {
+            "type": "string",
+            "format": "guid",
+            "nullable": true
+          },
+          "hospitalName": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GoogleAuthRequest": {
+        "type": "object",
+        "example": {
+          "idToken": "google-id-token"
+        },
+        "additionalProperties": false,
+        "required": [
+          "idToken"
+        ],
+        "properties": {
+          "idToken": {
+            "type": "string",
+            "minLength": 1,
+            "nullable": false,
+            "example": "google-id-token"
+          }
+        }
+      },
+      "ForgotPasswordRequest": {
+        "type": "object",
+        "example": {
+          "email": "john@example.com"
+        },
+        "additionalProperties": false,
+        "required": [
+          "email"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "minLength": 1,
+            "pattern": "^[^@]+@[^@]+$",
+            "nullable": false,
+            "example": "john@example.com"
+          }
+        }
+      },
+      "AuthStatusResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "isAuthenticated": {
+            "type": "boolean"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "hospitalId": {
+            "type": "string",
+            "format": "guid",
+            "nullable": true
+          },
+          "hospitalName": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "emailVerified": {
+            "type": "boolean"
+          },
+          "isAccountLocked": {
+            "type": "boolean"
+          },
+          "accessFailedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tokenExpires": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GoogleConfigResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "clientId": {
+            "type": "string"
+          },
+          "redirectUri": {
+            "type": "string"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "example": {
+          "email": "admin@hospital.com",
+          "password": "Admin@123"
+        },
+        "additionalProperties": false,
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "minLength": 1,
+            "pattern": "^[^@]+@[^@]+$",
+            "nullable": false,
+            "example": "admin@hospital.com"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 6,
+            "nullable": false,
+            "example": "Admin@123"
+          }
+        }
+      },
+      "HttpValidationProblemDetails": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ProblemDetails"
+          },
+          {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            },
+            "properties": {
+              "errors": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "RefreshTokenRequest": {
+        "type": "object",
+        "example": {
+          "refreshToken": "your-refresh-token"
+        },
+        "additionalProperties": false,
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "nullable": true,
+            "example": "your-refresh-token"
+          }
+        }
+      },
+      "RegisterRequest": {
+        "type": "object",
+        "example": {
+          "firstName": "John",
+          "lastName": "Doe",
+          "email": "john@example.com",
+          "password": "Password@123",
+          "confirmPassword": "Password@123",
+          "phoneNumber": "9876543210"
+        },
+        "additionalProperties": false,
+        "required": [
+          "firstName",
+          "lastName",
+          "email",
+          "password",
+          "confirmPassword"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 0,
+            "nullable": false,
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 0,
+            "nullable": false,
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "minLength": 1,
+            "pattern": "^[^@]+@[^@]+$",
+            "nullable": false,
+            "example": "john@example.com"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 6,
+            "nullable": false,
+            "example": "Password@123"
+          },
+          "confirmPassword": {
+            "type": "string",
+            "minLength": 1,
+            "example": "Password@123"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "format": "phone",
+            "maxLength": 20,
+            "minLength": 0,
+            "nullable": true,
+            "example": "9876543210"
+          }
+        }
+      },
+      "ResendVerificationEmailRequest": {
+        "type": "object",
+        "example": {
+          "email": "john@example.com"
+        },
+        "additionalProperties": false,
+        "required": [
+          "email"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "minLength": 1,
+            "pattern": "^[^@]+@[^@]+$",
+            "nullable": false,
+            "example": "john@example.com"
+          }
+        }
+      },
+      "ResetPasswordRequest": {
+        "type": "object",
+        "example": {
+          "userId": "60c49fb3-d7c1-4f3e-95a7-ad0ab48f9d62",
+          "token": "reset-password-token",
+          "newPassword": "NewPassword@123",
+          "confirmPassword": "NewPassword@123"
+        },
+        "additionalProperties": false,
+        "required": [
+          "userId",
+          "token",
+          "newPassword",
+          "confirmPassword"
+        ],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "guid",
+            "minLength": 1,
+            "nullable": false,
+            "example": "60c49fb3-d7c1-4f3e-95a7-ad0ab48f9d62"
+          },
+          "token": {
+            "type": "string",
+            "minLength": 1,
+            "nullable": false,
+            "example": "reset-password-token"
+          },
+          "newPassword": {
+            "type": "string",
+            "minLength": 6,
+            "nullable": false,
+            "example": "NewPassword@123"
+          },
+          "confirmPassword": {
+            "type": "string",
+            "minLength": 1,
+            "nullable": false,
+            "example": "NewPassword@123"
+          }
+        }
+      },
+      "ValidateTokenResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "isValid": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ValidateTokenRequest": {
+        "type": "object",
+        "example": {
+          "token": "your-jwt-token"
+        },
+        "additionalProperties": false,
+        "required": [
+          "token"
+        ],
+        "properties": {
+          "token": {
+            "type": "string",
+            "minLength": 1,
+            "nullable": false,
+            "example": "your-jwt-token"
+          }
+        }
+      },
+      "EmailVerificationRequest": {
+        "type": "object",
+        "example": {
+          "userId": "cb047ac5-e460-40b8-b395-140bb54020bb",
+          "token": "email-verification-token"
+        },
+        "additionalProperties": false,
+        "required": [
+          "userId",
+          "token"
+        ],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "guid",
+            "minLength": 1,
+            "nullable": false,
+            "example": "cb047ac5-e460-40b8-b395-140bb54020bb"
+          },
+          "token": {
+            "type": "string",
+            "minLength": 1,
+            "nullable": false,
+            "example": "email-verification-token"
+          }
+        }
+      },
+      "AppointmentDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "hospitalId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "hospitalName": {
+            "type": "string"
+          },
+          "patientName": {
+            "type": "string"
+          },
+          "patientEmail": {
+            "type": "string"
+          },
+          "patientPhoneNumber": {
+            "type": "string"
+          },
+          "doctorUserId": {
+            "type": "string"
+          },
+          "doctorName": {
+            "type": "string"
+          },
+          "appointmentDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "reviewedByUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "reviewedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "decisionNote": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "ApproveAppointmentRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CreateAppointmentRequest": {
+        "type": "object",
+        "example": {
+          "hospitalId": "00000000-0000-0000-0000-000000000001",
+          "patientName": "Jane Patient",
+          "patientEmail": "jane@example.com",
+          "patientPhoneNumber": "+1 555 123 4567",
+          "doctorUserId": "doctor-user-id",
+          "appointmentDateTime": "2026-05-26T14:12:55.6279136+00:00",
+          "reason": "General consultation"
+        },
+        "additionalProperties": false,
+        "required": [
+          "hospitalId",
+          "patientName",
+          "patientEmail",
+          "patientPhoneNumber",
+          "doctorUserId",
+          "reason"
+        ],
+        "properties": {
+          "hospitalId": {
+            "type": "string",
+            "format": "guid",
+            "minLength": 1,
+            "nullable": false,
+            "example": "00000000-0000-0000-0000-000000000001"
+          },
+          "patientName": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 0,
+            "nullable": false,
+            "example": "Jane Patient"
+          },
+          "patientEmail": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 200,
+            "minLength": 0,
+            "pattern": "^[^@]+@[^@]+$",
+            "nullable": false,
+            "example": "jane@example.com"
+          },
+          "patientPhoneNumber": {
+            "type": "string",
+            "maxLength": 25,
+            "minLength": 0,
+            "nullable": false,
+            "example": "+1 555 123 4567"
+          },
+          "doctorUserId": {
+            "type": "string",
+            "maxLength": 450,
+            "minLength": 0,
+            "nullable": false,
+            "example": "doctor-user-id"
+          },
+          "appointmentDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-05-26T14:12:55.6279136+00:00"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 0,
+            "nullable": false,
+            "example": "General consultation"
+          }
+        }
+      },
+      "DeclineAppointmentRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "reason": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 0,
+            "nullable": true
+          }
+        }
+      },
+      "PagedResultOfAppointmentDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AppointmentDto"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "perPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ListAppointmentsRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AppointmentStatus": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Pending",
+          "Approved",
+          "Declined",
+          "Cancelled"
+        ],
+        "enum": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    "securitySchemes": {
+      "JWTBearerAuth": {
+        "type": "http",
+        "description": "Enter a JWT token to authorize the requests...",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

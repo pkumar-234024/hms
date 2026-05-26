@@ -1,0 +1,34 @@
+# Healthcare Platform Product Requirements
+
+## Overview
+A premium SaaS healthcare platform providing modules for Hospital Administrators, Doctors, and Patients.
+
+## Core Modules & Screens
+
+### 1. Public Facing
+- **Landing Page**: Hero with medical imagery, feature overview, CTA.
+- **About Page**: Mission, specialist showcase, achievements, testimonials.
+- **Contact Page**: Contact form, emergency cards, hospital map.
+- **Feedback Page**: Patient reviews, star ratings, emoji reactions.
+- **Auth**: Login/Register with 2FA support and doctor-specific portals.
+
+### 2. Super Admin Dashboard
+- **Analytics**: Revenue, patient/doctor trends, activity logs.
+- **Management**: Doctor CRUD, patient management, registration approval.
+- **Operations**: Bed availability, emergency case tracking.
+
+### 3. Doctor Panel
+- **Dashboard**: Today's appointments, quick-access patient search.
+- **Patient Records**: Medical history, report uploads, prescription management.
+- **Schedule**: Calendar management, video consultation triggers.
+
+### 4. Patient Dashboard
+- **My Health**: Medical history, report downloads, health analytics.
+- **Appointments**: Multi-step booking system, upcoming visits.
+- **Billing**: Payment history and insurance details.
+
+### 5. Shared Features
+- AI Health Assistant chatbot.
+- Real-time notifications and emergency alert banners.
+- Dark/Light mode toggle.
+- Responsive sidebar and top navigation.
