@@ -1,13 +1,17 @@
-import { Outlet } from 'react-router-dom'
-import TopNav from './TopNav'
-import BottomNav from './BottomNav'
-import Sidebar from './Sidebar'
+import { Outlet } from "react-router-dom";
+import TopNav from "./TopNav";
+import BottomNav from "./BottomNav";
+import Sidebar from "./Sidebar";
 
-interface NavItem { icon: string; label: string; path: string }
+interface NavItem {
+  icon: string;
+  label: string;
+  path: string;
+}
 
 interface Props {
-  navItems: NavItem[]
-  avatarInitials?: string
+  navItems: NavItem[];
+  avatarInitials?: string;
 }
 
 const AppShell = ({ navItems, avatarInitials }: Props) => (
@@ -16,7 +20,7 @@ const AppShell = ({ navItems, avatarInitials }: Props) => (
     <div className="mobile-only">
       <TopNav showAvatar avatarInitials={avatarInitials} />
     </div>
-    
+
     {/* Desktop Sidebar (hidden on mobile via CSS) */}
     <Sidebar />
 
@@ -27,6 +31,6 @@ const AppShell = ({ navItems, avatarInitials }: Props) => (
     </main>
     <BottomNav items={navItems} />
   </div>
-)
+);
 
-export default AppShell
+export default AppShell;
