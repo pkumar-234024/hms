@@ -4,7 +4,7 @@ import './App.css'
 
 // Layouts
 import AppShell from './components/layout/AppShell'
-import TopNav from './components/layout/TopNav'
+import { PublicNavBar } from './components/layout/PublicNavBar'
 
 // Auth
 import { LoginPage } from './features/auth'
@@ -67,10 +67,10 @@ const App = () => {
     }
   }
 
-  // Helper for Public routes that share TopNav but don't have BottomNav
+  // Helper for Public routes that share PublicNavBar but don't have BottomNav
   const PublicLayout = ({ children }: { children: React.ReactNode }) => (
     <div className="app-root">
-      <TopNav isPublic={true} />
+      <PublicNavBar />
       <main className="app-shell app-shell--public">
         <div className="app-shell__content">
           {children}
