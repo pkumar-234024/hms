@@ -261,7 +261,7 @@ const BookAppointment = () => {
           {/* Department Quick Filter (Visual only, matches Stitch Design spec) */}
           <div style={{ marginTop: 'var(--sp-md)' }}>
             <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 'var(--sp-sm)' }}>Specialty Area</h3>
-            <div className="dept-grid" style={{ marginBottom: 'var(--sp-xl)', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--sp-sm)' }}>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4" style={{ marginBottom: 'var(--sp-xl)' }}>
               {[
                 { id: 'cardiology', name: 'Cardiology', icon: 'monitor_heart', color: 'cardio' },
                 { id: 'neurology', name: 'Neurology', icon: 'psychology', color: 'neuro' },
@@ -357,7 +357,7 @@ const BookAppointment = () => {
             </div>
           )}
 
-          <div style={{ display: 'flex', gap: 'var(--sp-md)' }}>
+          <div className="flex flex-col-reverse sm:flex-row gap-4" style={{ marginTop: 'var(--sp-md)' }}>
             <button
               className="btn-secondary"
               onClick={() => setStep(1)}
@@ -474,7 +474,7 @@ const BookAppointment = () => {
             </div>
 
             {/* Actions Buttons */}
-            <div style={{ display: 'flex', gap: 'var(--sp-md)', marginTop: 'var(--sp-sm)' }}>
+            <div className="flex flex-col-reverse sm:flex-row gap-4" style={{ marginTop: 'var(--sp-md)' }}>
               <button
                 type="button"
                 className="btn-secondary"

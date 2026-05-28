@@ -26,7 +26,7 @@ const AboutPage = () => (
     </div>
 
     {/* Stats */}
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: '3.5rem' }}>
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4" style={{ marginBottom: '3.5rem' }}>
       {[
         { value: '2.4M', label: 'Patients Managed', icon: 'group' },
         { value: '99.9%', label: 'System Uptime', icon: 'speed' },
@@ -44,7 +44,7 @@ const AboutPage = () => (
     {/* Values */}
     <section style={{ marginBottom: '3.5rem' }}>
       <h2 style={{ fontSize: 28, fontWeight: 800, marginBottom: 24, color: 'var(--on-surface)' }}>Our Core Values</h2>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {[
           { icon: 'shield', title: 'Uncompromising Security', desc: 'HIPAA compliant architecture protecting every medical record with AES-256 encryption.', color: '#004ac6' },
           { icon: 'auto_awesome', title: 'AI-Powered Insights', desc: 'Machine learning algorithms assist in diagnostics and improve operational efficiency.', color: '#8b5cf6' },
@@ -68,7 +68,7 @@ const AboutPage = () => (
     <section style={{ marginBottom: '3.5rem' }}>
       <h2 style={{ fontSize: 28, fontWeight: 800, marginBottom: 8, color: 'var(--on-surface)' }}>World-Class Specialists</h2>
       <p style={{ fontSize: 15, color: 'var(--on-surface-variant)', marginBottom: 24, lineHeight: 1.6 }}>Our medical team brings decades of combined experience from leading institutions worldwide.</p>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {[
           { name: 'Dr. Sarah Chen', role: 'Neurosurgeon', university: 'Oxford University, PhD', rating: '4.9' },
           { name: 'Dr. Marcus Thorn', role: 'Cardiologist', university: 'Stanford Medicine', rating: '4.8' },

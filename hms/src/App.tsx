@@ -82,7 +82,6 @@ const App = () => {
   // Full-width layout for landing page (has its own nav/footer)
   const FullWidthLayout = ({ children }: { children: React.ReactNode }) => (
     <div className="app-root" style={{ paddingTop: 0 }}>
-      <TopNav isPublic={true} />
       {children}
     </div>
   )

@@ -5,13 +5,14 @@ interface Props {
   showAvatar?: boolean
   avatarInitials?: string
   isPublic?: boolean
+  isLight?: boolean
 }
 
-const TopNav = ({ showAvatar, avatarInitials = 'U', isPublic = false }: Props) => {
+const TopNav = ({ showAvatar, avatarInitials = 'U', isPublic = false, isLight = false }: Props) => {
   const { user } = useAppSelector((state) => state.auth)
 
   return (
-    <header className={`top-nav ${isPublic ? 'top-nav--public' : ''}`} id="top-nav">
+    <header className={`top-nav ${isLight ? 'top-nav--light' : isPublic ? 'top-nav--public' : ''}`} id="top-nav">
       <Link to="/" className="top-nav__brand">
         <span className="material-symbols-outlined">clinical_notes</span>
         <span className="top-nav__brand-name">MediFlow</span>
