@@ -24,6 +24,7 @@ import DoctorDashboard from './features/doctor/DoctorDashboard'
 // Patient Pages
 import PatientDashboard from './features/patient/PatientDashboard'
 import BookAppointment from './features/patient/BookAppointment'
+import AppointmentsPage from './features/patient/AppointmentsPage'
 import MedicalReports from './features/patient/MedicalReports'
 import FeedbackPage from './features/patient/FeedbackPage'
 
@@ -116,6 +117,7 @@ const App = () => {
             
             {/* Patient Routes */}
             <Route path="/patient/dashboard" element={<PatientDashboard />} />
+            <Route path="/patient/appointments" element={<AppointmentsPage />} />
             <Route path="/book" element={<BookAppointment />} />
             <Route path="/patient/reports" element={<MedicalReports />} />
             <Route path="/patient/feedback" element={<FeedbackPage />} />

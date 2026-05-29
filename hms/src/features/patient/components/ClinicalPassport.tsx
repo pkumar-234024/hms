@@ -8,7 +8,6 @@ interface ClinicalPassportProps {
     time: string;
     full: string;
   };
-  setActiveSubTab: (tab: "overview" | "appointments" | "records") => void;
 }
 
 export const ClinicalPassport = (_props: ClinicalPassportProps) => {

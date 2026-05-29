@@ -15,56 +15,35 @@ const Sidebar = () => {
     ? user.firstName.charAt(0).toUpperCase()
     : "U";
   const isAdmin = role === "Super Admin" || role === "Admin";
-  const brandTitle = role === "Doctor" ? "Clinical Clarity" : "Admin Center";
-  const brandSubtitle =
-    role === "Doctor" ? "Admin Center" : "Medical Management";
-  const navItems = [
-    {
-      to: isAdmin
-        ? "/admin"
-        : role === "Doctor"
-          ? "/doctor/dashboard"
-          : "/patient/dashboard",
-      icon: "dashboard",
-      label: "Overview",
-      end: true,
-    },
-    {
-      to:
-        role === "Patient"
-          ? "/book"
-          : role === "Doctor"
-            ? "/doctor/patients"
-            : "/admin/doctors",
-      icon: "group",
-      label: "Patients",
-    },
-    {
-      to:
-        role === "Patient"
-          ? "/book"
-          : role === "Doctor"
-            ? "/doctor/schedule"
-            : "/settings",
-      icon: "calendar_month",
-      label: "Schedules",
-    },
-    // {
-    //   to: role === "Patient" ? "/patient/reports" : "/settings",
-    //   icon: "biotech",
-    //   label: "Lab Reports",
-    // },
-    // { to: "/settings", icon: "local_pharmacy", label: "Pharmacy" },
-    // {
-    //   to: isAdmin
-    //     ? "/admin"
-    //     : role === "Doctor"
-    //       ? "/doctor/dashboard"
-    //       : "/patient/dashboard",
-    //   icon: "analytics",
-    //   label: "Analytics",
-    // },
-  ];
+  const isPatient = role === "Patient";
+  const brandTitle = isPatient ? "MediFlow" : role === "Doctor" ? "Clinical Clarity" : "Admin Center";
+  const brandSubtitle = isPatient ? "Patient Portal" : role === "Doctor" ? "Admin Center" : "Medical Management";
+
+  const navItems = isPatient
+    ? [
+        { to: "/patient/dashboard", icon: "dashboard", label: "Overview", end: true },
+        { to: "/patient/appointments", icon: "event_note", label: "Appointments" },
+        { to: "/book", icon: "add_circle", label: "Book Appointment" },
+        { to: "/patient/reports", icon: "biotech", label: "Lab Reports" },
+      ]
+    : [
+        {
+          to: isAdmin ? "/admin" : "/doctor/dashboard",
+          icon: "dashboard",
+          label: "Overview",
+          end: true,
+        },
+        {
+          to: role === "Doctor" ? "/doctor/patients" : "/admin/doctors",
+          icon: "group",
+          label: "Patients",
+        },
+        {
+          to: role === "Doctor" ? "/doctor/schedule" : "/settings",
+          icon: "calendar_month",
+          label: "Schedules",
+        },
+      ];
 
   const handleLogout = () => {
     dispatch(logout());

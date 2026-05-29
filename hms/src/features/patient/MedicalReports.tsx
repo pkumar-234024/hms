@@ -1,117 +1,95 @@
-import { useState } from 'react'
-
 const MedicalReports = () => {
-  const [filter, setFilter] = useState('all')
-
   return (
     <div className="fade-up">
-      <div className="page-header">
-        <h1>Medical Records</h1>
-        <p>Manage and access your diagnostic reports securely.</p>
+      <div className="page-header" style={{ marginBottom: "var(--sp-md)" }}>
+        <h2 style={{ fontSize: 24, fontWeight: 600, marginBottom: 4 }}>
+          Lab Reports
+        </h2>
+        <p style={{ color: "var(--on-surface-variant)", fontSize: 14 }}>
+          View and download your diagnostic reports.
+        </p>
       </div>
 
-      <div className="upload-area" style={{ marginBottom: 'var(--sp-lg)' }}>
-        <span className="material-symbols-outlined">cloud_upload</span>
-        <div className="upload-area__title">Upload New Report</div>
-        <div className="upload-area__desc">Drag and drop your medical documents here, or click to browse files (PDF, JPG, PNG).</div>
-      </div>
-
-      <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 'var(--sp-md)', marginBottom: 'var(--sp-sm)' }}>
-        <button className={`btn-chip ${filter === 'all' ? 'btn-chip--active' : ''}`} onClick={() => setFilter('all')}>All Reports</button>
-        <button className={`btn-chip ${filter === 'lab' ? 'btn-chip--active' : ''}`} onClick={() => setFilter('lab')}>Laboratory</button>
-        <button className={`btn-chip ${filter === 'rad' ? 'btn-chip--active' : ''}`} onClick={() => setFilter('rad')}>Radiology</button>
-        <button className={`btn-chip ${filter === 'vac' ? 'btn-chip--active' : ''}`} onClick={() => setFilter('vac')}>Vaccination</button>
-      </div>
-
-      <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--on-surface-variant)', marginBottom: 'var(--sp-sm)' }}>PROCESSING</div>
-      
-      <div className="glass-card glass-card--flat" style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 'var(--sp-sm)', marginBottom: 'var(--sp-lg)', borderLeft: '4px solid var(--secondary)' }}>
-        <div style={{ width: 40, height: 40, borderRadius: 'var(--r-md)', background: 'var(--surface-container-high)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--secondary)' }}>
-          <span className="material-symbols-outlined">description</span>
-        </div>
-        <div style={{ flex: 1 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-            <span style={{ fontSize: 14, fontWeight: 500 }}>MRI_Brain_Scan_Final.pdf</span>
-            <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--secondary)' }}>85%</span>
-          </div>
-          <div className="capacity-bar__track" style={{ height: 4 }}>
-            <div className="capacity-bar__fill capacity-bar__fill--secondary" style={{ width: '85%' }} />
-          </div>
-        </div>
-        <button style={{ border: 'none', background: 'none', color: 'var(--outline)', cursor: 'pointer', display: 'flex' }}>
-          <span className="material-symbols-outlined">close</span>
-        </button>
-      </div>
-
-      <div>
-        <div className="report-card">
-          <div className="report-card__image">
-            <span className="material-symbols-outlined">radiology</span>
-            <span className="report-card__category report-card__category--radiology">Radiology</span>
-          </div>
-          <div className="report-card__body">
-            <div className="report-card__title">Full Body MRI Scan</div>
-            <div className="report-card__date">Uploaded Oct 24, 2023</div>
-            <div className="report-card__footer">
-              <div className="report-card__status report-card__status--verified">
-                <span className="material-symbols-outlined" style={{ fontSize: 16 }}>verified</span>
-                Verified
-              </div>
-              <div className="report-card__actions">
-                <button className="report-card__action-btn report-card__action-btn--outline"><span className="material-symbols-outlined" style={{ fontSize: 20 }}>visibility</span></button>
-                <button className="report-card__action-btn"><span className="material-symbols-outlined" style={{ fontSize: 20 }}>download</span></button>
-              </div>
-            </div>
-          </div>
+      {/* Under Development Banner */}
+      <div
+        className="glass-card glass-card--flat"
+        style={{
+          padding: "60px 32px",
+          textAlign: "center",
+          borderRadius: "var(--r-xl)",
+          border: "1px dashed var(--outline-variant)",
+          background: "var(--surface-container-low)",
+        }}
+      >
+        <div
+          style={{
+            width: 72,
+            height: 72,
+            borderRadius: "50%",
+            background: "var(--primary-fixed)",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: 20,
+          }}
+        >
+          <span
+            className="material-symbols-outlined"
+            style={{ fontSize: 36, color: "var(--primary)" }}
+          >
+            construction
+          </span>
         </div>
 
-        <div className="report-card">
-          <div className="report-card__image">
-            <span className="material-symbols-outlined">biotech</span>
-            <span className="report-card__category report-card__category--laboratory">Laboratory</span>
-          </div>
-          <div className="report-card__body">
-            <div className="report-card__title">Annual Blood Panel</div>
-            <div className="report-card__date">Uploaded Sep 12, 2023</div>
-            <div className="report-card__footer">
-              <div className="report-card__status report-card__status--review">
-                <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'currentColor' }} />
-                Requires Review
-              </div>
-              <div className="report-card__actions">
-                <button className="report-card__action-btn report-card__action-btn--outline"><span className="material-symbols-outlined" style={{ fontSize: 20 }}>visibility</span></button>
-                <button className="report-card__action-btn"><span className="material-symbols-outlined" style={{ fontSize: 20 }}>download</span></button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <h3
+          style={{
+            fontSize: 20,
+            fontWeight: 700,
+            color: "var(--on-surface)",
+            margin: "0 0 8px 0",
+          }}
+        >
+          Under Development
+        </h3>
+        <p
+          style={{
+            color: "var(--on-surface-variant)",
+            fontSize: 14,
+            margin: "0 auto",
+            maxWidth: 400,
+            lineHeight: 1.6,
+          }}
+        >
+          The Lab Reports module is currently being built. You'll soon be able
+          to view, download, and manage all your diagnostic reports securely
+          from this page.
+        </p>
 
-        <div className="report-card">
-          <div className="report-card__image">
-            <span className="material-symbols-outlined">vaccines</span>
-            <span className="report-card__category report-card__category--vaccination">Vaccination</span>
-          </div>
-          <div className="report-card__body">
-            <div className="report-card__title">COVID-19 Booster Cert</div>
-            <div className="report-card__date">Uploaded Aug 05, 2023</div>
-            <div className="report-card__footer">
-              <div className="report-card__status report-card__status--verified">
-                <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'currentColor' }} />
-                Verified
-              </div>
-              <div className="report-card__actions">
-                <button className="report-card__action-btn report-card__action-btn--outline"><span className="material-symbols-outlined" style={{ fontSize: 20 }}>visibility</span></button>
-              </div>
-            </div>
-          </div>
+        <div
+          style={{
+            marginTop: 24,
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            padding: "8px 16px",
+            borderRadius: "var(--r-lg)",
+            background: "var(--surface-container-high)",
+            fontSize: 12,
+            fontWeight: 600,
+            color: "var(--outline)",
+          }}
+        >
+          <span
+            className="material-symbols-outlined"
+            style={{ fontSize: 16 }}
+          >
+            info
+          </span>
+          Expected availability: Coming Soon
         </div>
       </div>
-
-      <button className="fab">
-        <span className="material-symbols-outlined">add</span>
-      </button>
     </div>
-  )
-}
+  );
+};
 
-export default MedicalReports
+export default MedicalReports;

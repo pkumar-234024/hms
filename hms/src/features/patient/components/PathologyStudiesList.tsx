@@ -6,14 +6,12 @@ interface PathologyStudiesListProps {
   labReports: LabReport[];
   downloadingReportId: string | null;
   handleDownload: (report: LabReport) => void;
-  setActiveSubTab: (tab: "overview" | "appointments" | "records") => void;
 }
 
 export const PathologyStudiesList = ({
   labReports,
   downloadingReportId,
   handleDownload,
-  setActiveSubTab,
 }: PathologyStudiesListProps) => {
   return (
     <div className="bg-white p-6 rounded-xl border border-slate-100 shadow-sm flex flex-col justify-between transition-all duration-300">
@@ -22,12 +20,9 @@ export const PathologyStudiesList = ({
           <h3 className="text-lg font-extrabold text-[#0B1C30] tracking-tight">
             Pathology Reports
           </h3>
-          <button
-            onClick={() => setActiveSubTab("records")}
-            className="text-[#003c90] hover:text-[#0b57d0] font-extrabold text-xs hover:underline flex items-center cursor-pointer bg-transparent border-none p-0"
-          >
-            View History
-          </button>
+          <span className="text-slate-400 font-extrabold text-xs">
+            Recent
+          </span>
         </div>
 
         <div className="space-y-3.5">
