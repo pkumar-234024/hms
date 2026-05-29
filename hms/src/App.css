@@ -471,4 +471,3 @@
   .sidebar__logout { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; border-radius: var(--r-lg); background: transparent; border: 1.5px solid var(--outline-variant); color: var(--on-surface-variant); font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; font-size: 14px; }
   .sidebar__logout:hover { background: rgba(186,26,26,.05); border-color: var(--error-container); color: var(--error); }
 }
-

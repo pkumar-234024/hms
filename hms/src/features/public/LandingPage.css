@@ -1,0 +1,43 @@
+#landing-page-view {
+  background: #f6f9ff;
+  color: #081528;
+}
+
+#landing-page-view .hero-gradient {
+  min-height: 680px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #f1f6ff 0%, #e7f2ff 100%);
+}
+
+#landing-page-view .hero-gradient img {
+  border-radius: 8px;
+}
+
+#landing-page-view input,
+#landing-page-view select,
+#landing-page-view textarea {
+  outline: none;
+}
+
+#landing-page-view input:focus,
+#landing-page-view select:focus,
+#landing-page-view textarea:focus {
+  border-color: #003c90;
+  box-shadow: 0 0 0 4px rgba(0, 60, 144, 0.1);
+}
+
+#landing-page-view .rounded-xl,
+#landing-page-view .rounded-2xl {
+  border-radius: 8px;
+}
+
+#landing-page-view footer {
+  background: #d5e8ff;
+}
+
+@media (max-width: 767px) {
+  #landing-page-view .hero-gradient {
+    min-height: auto;
+  }
+}

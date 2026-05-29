@@ -39,12 +39,12 @@ export const ConsultationQueue = ({
       </div>
 
       {loading && appointments.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-20 gap-3 text-[#003c90] bg-white/70 backdrop-blur rounded-3xl border border-slate-200 shadow-sm">
+        <div className="flex flex-col items-center justify-center py-20 gap-3 text-[#003c90] bg-white/70 backdrop-blur rounded-xl border border-slate-200 shadow-sm">
           <Activity className="w-8 h-8 animate-spin" />
           <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Verifying Clinical Keys...</span>
         </div>
       ) : appointments.length === 0 ? (
-        <div className="bg-white/70 backdrop-blur rounded-3xl p-8 border border-slate-200/80 text-center shadow-sm">
+        <div className="bg-white/70 backdrop-blur rounded-xl p-8 border border-slate-200/80 text-center shadow-sm">
           <Calendar className="w-12 h-12 text-slate-300 mx-auto mb-3" />
           <h3 className="font-display text-base font-bold text-slate-700">No Patient Appointments</h3>
           <p className="font-sans text-xs text-slate-400 mt-1 max-w-xs mx-auto font-medium">Pending EHR requests will automatically stream to this section.</p>
@@ -63,7 +63,7 @@ export const ConsultationQueue = ({
                   setShowDeclineForm(null);
                   setDeclineReason("");
                 }}
-                className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden group ${
+                className={`p-4 rounded-xl border transition-all duration-300 cursor-pointer relative overflow-hidden group ${
                   isActive
                     ? "bg-white border-[#003c90] ring-1 ring-[#003c90]/25 shadow-md"
                     : "bg-white/70 backdrop-blur hover:bg-white border-slate-200/80 shadow-sm"
@@ -87,9 +87,9 @@ export const ConsultationQueue = ({
                     </div>
                   </div>
                   <span className={`px-2.5 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-wider border ${
-                    app.status === "Approved" ? "bg-emerald-50 text-emerald-800 border-emerald-150" :
-                    app.status === "Declined" ? "bg-red-50 text-red-800 border-red-150" :
-                    "bg-amber-50 text-amber-700 border-amber-150"
+                    app.status === "Approved" ? "bg-emerald-50 text-emerald-800 border-emerald-100" :
+                    app.status === "Declined" ? "bg-red-50 text-red-800 border-red-100" :
+                    "bg-amber-50 text-amber-700 border-amber-100"
                   }`}>
                     {app.status}
                   </span>

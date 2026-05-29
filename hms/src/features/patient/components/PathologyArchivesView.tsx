@@ -14,7 +14,7 @@ export const PathologyArchivesView = ({
   handleDownload,
 }: PathologyArchivesViewProps) => {
   return (
-    <div className="bg-white/70 backdrop-blur-md p-6 md:p-8 rounded-3xl border border-slate-200/80 space-y-6">
+    <div className="bg-white/70 backdrop-blur-md p-6 md:p-8 rounded-xl border border-slate-200/80 space-y-6">
       <div>
         <h3 className="font-display text-xl font-black text-[#0c1a30] tracking-tight">
           Secure Medical Pathology Archives
@@ -28,7 +28,7 @@ export const PathologyArchivesView = ({
         {labReports.map((rep) => (
           <div
             key={rep.id}
-            className="p-4 bg-white rounded-2xl border border-slate-200/80 flex flex-col justify-between h-40 shadow-sm hover:border-[#003c90] transition-colors"
+            className="p-4 bg-white rounded-xl border border-slate-200/80 flex flex-col justify-between h-40 shadow-sm hover:border-[#003c90] transition-colors"
           >
             <div className="flex justify-between items-start">
               <div>
@@ -36,7 +36,7 @@ export const PathologyArchivesView = ({
                   {rep.title}
                 </p>
                 <p className="font-sans text-[11px] text-slate-400 mt-1 font-semibold">
-                  Category: {rep.category} • Size: {rep.fileSize}
+                  Category: {rep.category} | Size: {rep.fileSize}
                 </p>
               </div>
               <span

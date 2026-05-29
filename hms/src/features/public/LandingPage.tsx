@@ -16,6 +16,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/ui/Button";
 import { PublicNavBar } from "../../components/layout/PublicNavBar";
+import "./LandingPage.css";
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -73,7 +74,7 @@ export default function LandingPage() {
       {emergencyActive && (
         <div className="bg-red-600 text-white py-3 px-4 z-50 text-center font-bold text-xs tracking-wide sticky top-16 shadow flex items-center justify-center gap-2">
           <span>
-            🚨 ACTIVE EMERGENCY DETECTED: CLINI-TRAUMA CODE RED. DISPATCH FLUID
+            ACTIVE EMERGENCY DETECTED: CLINI-TRAUMA CODE RED. DISPATCH FLUID
             MONITORING ACTIVATED.
           </span>
           <button
@@ -87,10 +88,10 @@ export default function LandingPage() {
 
       {/* ── Hero Section (Exact code.html Match) ── */}
       <section className="hero-gradient overflow-hidden relative pt-xl pb-24 md:py-32">
-        <div className="mx auto px-gutter grid lg:grid-cols-2 gap-xl items-center">
+        <div className="mx-auto w-full px-gutter grid lg:grid-cols-2 gap-xl items-center">
           <div className="z-10 text-center lg:text-left">
-            <span className="inline-block bg-primary-container text-on-primary-container px-6 py-1 rounded font-label-l mb-md">
-              Trust • Precision • Care
+            <span className="inline-block bg-primary-container text-on-primary-container px-6 py-1 rounded font-label-md mb-md">
+              Trust | Precision | Care
             </span>
 
             <h1 className="font-display-lg text-display-lg text-primary mb-md leading-tight">
@@ -113,7 +114,7 @@ export default function LandingPage() {
                     .getElementById("booking")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="h-12 w-36 !rounded-lg"
+                className="h-12 w-full sm:w-auto min-w-[11rem] !rounded-lg whitespace-nowrap"
               >
                 Book Appointment
               </Button>
@@ -124,7 +125,7 @@ export default function LandingPage() {
                   const el = document.getElementById("integrated-services");
                   el?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="h-12 w-42 !rounded-lg bg-white"
+                className="h-12 w-full sm:w-auto min-w-[13rem] !rounded-lg bg-white whitespace-nowrap"
               >
                 View Medical Services
               </Button>
@@ -188,7 +189,7 @@ export default function LandingPage() {
             </div>
 
             {isSuccess ? (
-              <div className="bg-emerald-50 border border-emerald-150 text-emerald-950 p-8 rounded-xl text-center flex flex-col items-center justify-center min-h-[260px] shadow-inner">
+              <div className="bg-emerald-50 border border-emerald-100 text-emerald-950 p-8 rounded-xl text-center flex flex-col items-center justify-center min-h-[260px] shadow-inner">
                 <CheckCircle2 className="w-14 h-14 text-emerald-600 mb-4 animate-bounce" />
                 <h3 className="font-headline-md text-headline-md text-secondary mb-xs">
                   Slot Secured Successfully!
@@ -586,7 +587,7 @@ export default function LandingPage() {
 
         <div className="w-full border-t border-outline-variant py-md px-gutter text-center">
           <p className="font-caption text-caption text-on-surface-variant">
-            © 2024 Clinical Clarity Hospital Management. HIPAA Compliant.
+            (c) 2024 Clinical Clarity Hospital Management. HIPAA Compliant.
           </p>
         </div>
       </footer>

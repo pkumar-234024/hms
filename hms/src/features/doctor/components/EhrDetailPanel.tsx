@@ -38,11 +38,11 @@ export const EhrDetailPanel = ({
   return (
     <section className="xl:col-span-7">
       {activeApp ? (
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden glass-premium">
+        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden glass-premium">
           {/* Detail Header */}
           <div className="bg-slate-50/50 px-6 py-6 border-b border-slate-200 flex justify-between items-center flex-wrap gap-4">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-[#eff4ff] flex items-center justify-center text-[#003c90] font-display font-black text-lg border border-blue-150 shadow-inner">
+              <div className="w-14 h-14 rounded-xl bg-[#eff4ff] flex items-center justify-center text-[#003c90] font-display font-black text-lg border border-blue-100 shadow-inner">
                 {activeApp.patientName?.charAt(0) || "P"}
               </div>
               <div>
@@ -54,7 +54,7 @@ export const EhrDetailPanel = ({
                   <strong className="text-slate-700">
                     {activeApp.id.substring(0, 8).toUpperCase()}
                   </strong>{" "}
-                  • {activeApp.hospitalName}
+                  | {activeApp.hospitalName}
                 </p>
               </div>
             </div>
@@ -90,12 +90,12 @@ export const EhrDetailPanel = ({
                     <Activity className="w-4 h-4 text-[#003c90]" />
                     Consultation Agenda
                   </h4>
-                  <div className="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl shadow-inner">
+                  <div className="bg-slate-50 border border-slate-200/80 p-4 rounded-xl shadow-inner">
                     <p className="font-sans text-xs font-bold text-slate-800 leading-relaxed">
                       {activeApp.reason}
                     </p>
                     <p className="text-[10px] text-slate-400 mt-2.5 font-bold uppercase tracking-wider">
-                      EHR TIMESTAMP •{" "}
+                      EHR TIMESTAMP |{" "}
                       {new Date(
                         activeApp.appointmentDateTime,
                       ).toLocaleDateString()}
@@ -103,10 +103,10 @@ export const EhrDetailPanel = ({
                     <span
                       className={`inline-block mt-3 text-[9px] font-extrabold px-2.5 py-0.5 rounded-full border uppercase tracking-wider ${
                         activeApp.status === "Approved"
-                          ? "bg-emerald-50 text-emerald-800 border-emerald-250"
+                          ? "bg-emerald-50 text-emerald-800 border-emerald-200"
                           : activeApp.status === "Declined"
-                            ? "bg-red-50 text-red-800 border-red-250"
-                            : "bg-[#eff4ff] text-[#003c90] border-blue-250"
+                            ? "bg-red-50 text-red-800 border-red-200"
+                            : "bg-[#eff4ff] text-[#003c90] border-blue-200"
                       }`}
                     >
                       {activeApp.status}
@@ -140,7 +140,7 @@ export const EhrDetailPanel = ({
             {/* Vitals Tab (High-Fidelity) */}
             {detailTab === "vitals" && (
               <div className="grid grid-cols-3 gap-4 pt-2">
-                <div className="bg-slate-50 border border-slate-200 p-4 rounded-2xl text-center shadow-sm">
+                <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl text-center shadow-sm">
                   <p className="font-sans text-[9px] font-extrabold uppercase tracking-widest text-slate-400">
                     Heart Rate
                   </p>
@@ -151,7 +151,7 @@ export const EhrDetailPanel = ({
                     Normal
                   </span>
                 </div>
-                <div className="bg-slate-50 border border-slate-200 p-4 rounded-2xl text-center shadow-sm">
+                <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl text-center shadow-sm">
                   <p className="font-sans text-[9px] font-extrabold uppercase tracking-widest text-slate-400">
                     Blood Pressure
                   </p>
@@ -162,7 +162,7 @@ export const EhrDetailPanel = ({
                     Optimal
                   </span>
                 </div>
-                <div className="bg-slate-50 border border-slate-200 p-4 rounded-2xl text-center shadow-sm">
+                <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl text-center shadow-sm">
                   <p className="font-sans text-[9px] font-extrabold uppercase tracking-widest text-slate-400">
                     Oxygen Saturation
                   </p>
@@ -179,7 +179,7 @@ export const EhrDetailPanel = ({
             {/* Labs Tab (High-Fidelity) */}
             {detailTab === "labs" && (
               <div className="space-y-3 pt-2">
-                <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between shadow-sm">
+                <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between shadow-sm">
                   <div>
                     <p className="font-sans text-xs font-bold text-slate-800">
                       Metabolic Panel (CMP)
@@ -192,7 +192,7 @@ export const EhrDetailPanel = ({
                     Verified
                   </span>
                 </div>
-                <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between shadow-sm">
+                <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between shadow-sm">
                   <div>
                     <p className="font-sans text-xs font-bold text-slate-800">
                       Lipid &amp; Cholesterol Study
@@ -231,7 +231,7 @@ export const EhrDetailPanel = ({
               <textarea
                 value={notesText}
                 onChange={(e) => setNotesText(e.target.value)}
-                className="w-full h-32 p-4 bg-white border border-slate-255 focus:ring-2 focus:ring-blue-100 focus:border-[#003c90] rounded-2xl outline-none text-xs font-sans text-slate-700 leading-relaxed transition shadow-inner"
+                className="w-full h-32 p-4 bg-white border border-slate-200 focus:ring-2 focus:ring-blue-100 focus:border-[#003c90] rounded-xl outline-none text-xs font-sans text-slate-700 leading-relaxed transition shadow-inner"
                 placeholder="Document clinical symptom updates, check-up insights, diagnostic observations, or chronic health feedback..."
               />
               <div className="flex justify-end">
@@ -250,7 +250,7 @@ export const EhrDetailPanel = ({
             </div>
 
             {/* Prescription Management Section */}
-            <div className="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-5 space-y-4">
+            <div className="bg-slate-50/70 border border-slate-200/80 rounded-xl p-5 space-y-4">
               <h4 className="font-display text-xs font-bold text-[#003c90] tracking-wider uppercase border-b border-slate-100 pb-3">
                 Active Prescription Registry
               </h4>
@@ -269,7 +269,7 @@ export const EhrDetailPanel = ({
                     value={newMedName}
                     onChange={(e) => setNewMedName(e.target.value)}
                     placeholder="E.g. Metoprolol 50mg"
-                    className="h-9 border border-slate-255 bg-white rounded-lg px-2 text-xs focus:ring-2 focus:ring-blue-100 focus:border-blue-900 outline-none transition-all"
+                    className="h-9 border border-slate-200 bg-white rounded-lg px-2 text-xs focus:ring-2 focus:ring-blue-100 focus:border-blue-900 outline-none transition-all"
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
@@ -279,7 +279,7 @@ export const EhrDetailPanel = ({
                   <select
                     value={newMedDosage}
                     onChange={(e) => setNewMedDosage(e.target.value)}
-                    className="h-9 border border-slate-255 bg-white rounded-lg px-2 text-xs transition-all"
+                    className="h-9 border border-slate-200 bg-white rounded-lg px-2 text-xs transition-all"
                   >
                     <option>1 Tablet</option>
                     <option>2 Tablets</option>
@@ -325,10 +325,10 @@ export const EhrDetailPanel = ({
                         <td className="p-3 font-semibold text-slate-800">
                           {px.medicineName}
                         </td>
-                        <td className="p-3 text-slate-505 font-medium">
+                        <td className="p-3 text-slate-500 font-medium">
                           {px.dosage}
                         </td>
-                        <td className="p-3 text-slate-505 font-medium">
+                        <td className="p-3 text-slate-500 font-medium">
                           {px.frequency}
                         </td>
                         <td className="p-3 text-right">
@@ -339,7 +339,7 @@ export const EhrDetailPanel = ({
                                 prev.filter((p) => p.id !== px.id),
                               )
                             }
-                            className="text-red-650 hover:text-red-800 p-1 rounded transition-colors"
+                            className="text-red-600 hover:text-red-800 p-1 rounded transition-colors"
                           >
                             <Trash2 className="w-4 h-4 inline-block" />
                           </button>
@@ -356,7 +356,7 @@ export const EhrDetailPanel = ({
                   onClick={() =>
                     alert("Prescription draft saved to clinical buffer.")
                   }
-                  className="px-5 py-2.5 bg-white border border-slate-255 text-slate-700 !rounded-xl text-xs font-bold hover:bg-slate-50 transition-colors cursor-pointer h-auto w-auto"
+                  className="px-5 py-2.5 bg-white border border-slate-200 text-slate-700 !rounded-xl text-xs font-bold hover:bg-slate-50 transition-colors cursor-pointer h-auto w-auto"
                 >
                   Save As Draft
                 </Button>
@@ -378,7 +378,7 @@ export const EhrDetailPanel = ({
           </div>
         </div>
       ) : (
-        <div className="bg-white/75 backdrop-blur rounded-3xl border border-slate-200 p-12 text-center shadow-sm">
+        <div className="bg-white/75 backdrop-blur rounded-xl border border-slate-200 p-12 text-center shadow-sm">
           <Activity className="w-12 h-12 text-slate-300 mx-auto mb-3" />
           <h3 className="font-display text-base font-bold text-slate-700">
             Select clinical record

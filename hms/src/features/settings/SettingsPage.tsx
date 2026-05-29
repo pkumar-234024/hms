@@ -16,7 +16,7 @@ const SettingsPage = () => {
           </div>
           <div>
             <h1 className="profile-info__name">Dr. Julian Vance</h1>
-            <div className="profile-info__detail">Chief Surgeon • Hospital ID: 8829</div>
+            <div className="profile-info__detail">Chief Surgeon | Hospital ID: 8829</div>
           </div>
         </div>
         <div style={{ padding: '0 var(--sp-md) var(--sp-md)' }}>

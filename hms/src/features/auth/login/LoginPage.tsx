@@ -64,7 +64,7 @@ const LoginPage = () => {
                 {user.roles && user.roles.length > 0 && (
                   <div className="login-success__role">
                     <span className="login-success__role-dot" />
-                    <span>{user.roles[0]}{user.hospitalName ? ` • ${user.hospitalName}` : ''}</span>
+                    <span>{user.roles[0]}{user.hospitalName ? ` | ${user.hospitalName}` : ''}</span>
                   </div>
                 )}
               </div>
@@ -171,7 +171,7 @@ const LoginPage = () => {
               {status === 'loading' && (
                 <div className="status-message" style={{ marginTop: 'var(--sp-md)' }}>
                   <span className="material-symbols-outlined">progress_activity</span>
-                  Authenticating…
+                  Authenticating...
                 </div>
               )}
               {error && (

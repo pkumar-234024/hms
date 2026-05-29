@@ -16,7 +16,7 @@ export const AppointmentsListView = ({
   getApptDateDetails,
 }: AppointmentsListViewProps) => {
   return (
-    <div className="space-y-6 bg-white/70 backdrop-blur-md p-6 md:p-8 rounded-3xl border border-slate-200/80">
+    <div className="space-y-6 bg-white/70 backdrop-blur-md p-6 md:p-8 rounded-xl border border-slate-200/80">
       <div className="flex items-center justify-between">
         <div>
           <h3 className="font-display text-xl font-black text-[#0c1a30] tracking-tight">
@@ -36,7 +36,7 @@ export const AppointmentsListView = ({
 
       {appointments.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center">
-          <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center border border-slate-100 mb-3 text-slate-400">
+          <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center border border-slate-100 mb-3 text-slate-400">
             <Heart className="w-6 h-6" />
           </div>
           <h3 className="font-display text-lg font-bold text-slate-700">
@@ -77,7 +77,7 @@ export const AppointmentsListView = ({
                     Scheduled for {details.full}
                   </p>
                   <p className="font-sans text-[11px] text-slate-400 font-medium">
-                    Provider: {app.doctorName} • Clinic Unit ({app.hospitalName})
+                    Provider: {app.doctorName} | Clinic Unit ({app.hospitalName})
                   </p>
                 </div>
               </div>

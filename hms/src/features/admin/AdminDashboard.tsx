@@ -2,10 +2,11 @@ import { useState } from "react";
 import { StatCard } from "./components/StatCard";
 import { ProvisioningForm } from "./components/ProvisioningForm";
 import { ActivatedKeysTable } from "./components/ActivatedKeysTable";
-import type { ProvisionedKey } from "./components/ActivatedKeysTable";
 import { FacilityHeatmap } from "./components/FacilityHeatmap";
 import { ComplianceStatus } from "./components/ComplianceStatus";
-
+import type { ProvisionedKey } from "./components/ActivatedKeysTable";
+import { DashboardFooter } from "../../components/dashboard/DashboardFooter";
+import "./AdminDashboard.css";
 const AdminDashboard = () => {
   // Provisioning form states
   const [provName, setProvName] = useState("");
@@ -77,12 +78,26 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="space-y-8 relative pb-12">
-      {/* Visual background decorative blur */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-blue-50 rounded-full blur-3xl opacity-50 pointer-events-none -z-10 animate-pulse-soft"></div>
+    <div className="admin-dashboard">
+      <header className="admin-dashboard__topbar">
+        <h1>System Overview</h1>
+        <div className="admin-dashboard__profile">
+          <button className="admin-dashboard__icon-btn" aria-label="Notifications">
+            <span className="material-symbols-outlined">notifications</span>
+          </button>
+          <div className="admin-dashboard__profile-text">
+            <strong>Dr. Sarah Chen</strong>
+            <span>Chief Administrator</span>
+          </div>
+          <img
+            src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=120"
+            alt="Dr. Sarah Chen"
+          />
+        </div>
+      </header>
 
       {/* Stats Bento Grid */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+      <section className="admin-dashboard__stats">
         <StatCard
           icon="medical_services"
           label="Active Doctors"
@@ -107,8 +122,8 @@ const AdminDashboard = () => {
           value="24.5k"
           trend="Low Stock Alert"
           trendColor="error"
-          iconBg="bg-tertiary-container/10"
-          iconColor="text-tertiary"
+          iconBg="bg-primary-fixed"
+          iconColor="text-primary"
         />
         <StatCard
           icon="biotech"
@@ -122,9 +137,9 @@ const AdminDashboard = () => {
       </section>
 
       {/* Credential Management & Analytics Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+      <div className="admin-dashboard__main">
         {/* Provisioning Tool (2/3 width) */}
-        <section className="lg:col-span-2 space-y-md">
+        <section className="admin-dashboard__workbench">
           <ProvisioningForm
             provName={provName}
             setProvName={setProvName}
@@ -140,11 +155,13 @@ const AdminDashboard = () => {
         </section>
 
         {/* Analytics Sidebar (1/3 width) */}
-        <section className="space-y-md">
+        <section className="admin-dashboard__insights">
           <FacilityHeatmap />
           <ComplianceStatus />
         </section>
       </div>
+
+      <DashboardFooter description="Clinical operations, patient access, and facility governance in one secure administrative workspace." />
     </div>
   );
 };

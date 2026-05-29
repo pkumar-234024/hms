@@ -1,0 +1,22 @@
+.top-nav + .top-nav {
+  display: none;
+}
+
+header.bg-surface {
+  background: #ffffff;
+}
+
+header.bg-surface nav {
+  min-height: 64px;
+}
+
+header.bg-surface .font-headline-md {
+  font-size: 22px !important;
+  color: #003c90 !important;
+}
+
+@media (max-width: 767px) {
+  header.bg-surface nav {
+    padding-inline: 16px !important;
+  }
+}

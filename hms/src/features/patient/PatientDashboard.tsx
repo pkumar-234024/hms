@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAppSelector } from "../../app/hooks";
-import { Bell } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { ClinicalPassport } from "./components/ClinicalPassport";
 import { SecurityActivityLogs } from "./components/SecurityActivityLogs";
 import { PharmacyAutoRefills } from "./components/PharmacyAutoRefills";
@@ -8,9 +8,13 @@ import { PathologyStudiesList } from "./components/PathologyStudiesList";
 import { AppointmentsListView } from "./components/AppointmentsListView";
 import { PathologyArchivesView } from "./components/PathologyArchivesView";
 import type { AppointmentDto, LabReport } from "./types";
+import { DashboardFooter } from "../../components/dashboard/DashboardFooter";
+import "./PatientDashboard.css";
 
 const PatientDashboard = () => {
   const { user } = useAppSelector((state) => state.auth);
+  const firstName = user?.firstName || "Sarah";
+  const navigate = useNavigate();
   const [appointments, setAppointments] = useState<AppointmentDto[]>([]);
   const [activeSubTab, setActiveSubTab] = useState<"overview" | "appointments" | "records">("overview");
   const [downloadingReportId, setDownloadingReportId] = useState<string | null>(null);
@@ -37,16 +41,29 @@ const PatientDashboard = () => {
         full: d.toLocaleString(),
       };
     } catch (e) {
-      return { day: "15", month: "OCT", time: "10:00 AM", full: "" };
+      return { day: "12", month: "OCT", time: "10:00 AM", full: "" };
     }
   };
 
-  const primaryAppointment = appointments[0];
+  // If there are no local appointments, create a placeholder matching the Cardiology Follow-up mockup
+  const primaryAppointment: AppointmentDto | undefined = appointments[0] || {
+    id: "cardio-follow-1",
+    hospitalId: "h-1",
+    hospitalName: "Main Wing",
+    patientName: "Sarah",
+    patientEmail: "sarah@example.com",
+    patientPhoneNumber: "+1 555 123 4567",
+    doctorUserId: "d-1",
+    doctorName: "Dr. Adrian Sterling",
+    appointmentDateTime: new Date("2026-10-12T10:00:00").toISOString(),
+    reason: "Cardiology Follow-up",
+    status: "Awaiting Consultation",
+    createdAt: new Date().toISOString(),
+  };
 
   const labReports: LabReport[] = [
-    { id: "lr-1", title: "Complete Blood Count (CBC)", date: "Oct 12, 2025", category: "Hematology", status: "Verified", fileSize: "1.2 MB" },
-    { id: "lr-2", title: "Lipid Panel Analysis", date: "Sep 28, 2025", category: "Biochemistry", status: "Verified", fileSize: "0.8 MB" },
-    { id: "lr-3", title: "ECG Report - Resting", date: "Sep 15, 2025", category: "Cardiology", status: "Pending Review", fileSize: "2.4 MB" },
+    { id: "lr-1", title: "CBC & Metabolism Panel", date: "Oct 24, 2024", category: "Hematology", status: "Verified", fileSize: "1.2 MB" },
+    { id: "lr-2", title: "Cardiac Marker Test", date: "Oct 12, 2024", category: "Biochemistry", status: "Verified", fileSize: "0.8 MB" },
   ];
 
   const handleDownload = (report: LabReport) => {
@@ -57,86 +74,121 @@ const PatientDashboard = () => {
     }, 1200);
   };
 
-  const firstName = user?.firstName || "Patient";
-
   return (
-    <div className="space-y-8 relative pb-12">
+    <div className="patient-dashboard">
       {/* Decorative floating blur for patient visual dashboard */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-blue-100/30 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-80 h-80 bg-blue-50 rounded-full blur-3xl opacity-50 pointer-events-none -z-10 animate-pulse-soft"></div>
 
-      {/* Header section with rich statistics */}
-      <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-6 border-b border-slate-200 gap-4">
+      {/* Horizontal Sub-Navigation Header */}
+      <div className="patient-dashboard__subnav hidden lg:flex justify-between items-center bg-white py-4 px-6 rounded-2xl border border-slate-100 shadow-sm mb-6">
+        <div className="flex items-center gap-8">
+          {/* Brand */}
+          <span className="text-xl font-extrabold text-[#003c90] tracking-tight">Clinical Clarity</span>
+          
+          {/* NavLinks */}
+          <nav className="flex items-center gap-6 text-sm font-semibold text-slate-500">
+            <button 
+              onClick={() => setActiveSubTab("overview")}
+              className={`pb-1 border-b-2 transition-all cursor-pointer ${
+                activeSubTab === "overview" ? "border-[#003c90] text-[#003c90]" : "border-transparent hover:text-slate-700"
+              }`}
+            >
+              Dashboard
+            </button>
+            <button 
+              onClick={() => setActiveSubTab("appointments")}
+              className={`pb-1 border-b-2 transition-all cursor-pointer ${
+                activeSubTab === "appointments" ? "border-[#003c90] text-[#003c90]" : "border-transparent hover:text-slate-700"
+              }`}
+            >
+              Appointments
+            </button>
+            <button 
+              onClick={() => setActiveSubTab("records")}
+              className={`pb-1 border-b-2 transition-all cursor-pointer ${
+                activeSubTab === "records" ? "border-[#003c90] text-[#003c90]" : "border-transparent hover:text-slate-700"
+              }`}
+            >
+              Medical Records
+            </button>
+          </nav>
+        </div>
+
+        {/* Right side controls */}
+        <div className="flex items-center gap-5">
+          {/* Search box */}
+          <div className="relative w-64 h-10 shrink-0">
+            <span className="material-symbols-outlined text-[20px] text-slate-400 absolute left-3 top-2.5">search</span>
+            <input 
+              type="text" 
+              placeholder="Search records..." 
+              className="w-full h-full bg-[#EFF4FF]/60 border border-slate-100 rounded-full pl-10 pr-4 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 text-slate-700 placeholder-slate-400"
+            />
+          </div>
+          
+          {/* Notifications */}
+          <button className="relative w-9 h-9 rounded-full hover:bg-slate-50 flex items-center justify-center transition-colors text-slate-500 cursor-pointer">
+            <span className="material-symbols-outlined text-[24px]">notifications</span>
+            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#C5221F] rounded-full border border-white"></span>
+          </button>
+
+          {/* Settings */}
+          <button className="w-9 h-9 rounded-full hover:bg-slate-50 flex items-center justify-center transition-colors text-slate-500 cursor-pointer">
+            <span className="material-symbols-outlined text-[24px]">settings</span>
+          </button>
+          
+          {/* Vertical Divider */}
+          <div className="w-[1px] h-6 bg-slate-200"></div>
+
+          {/* Profile User avatar */}
+          <div className="w-9 h-9 rounded-full overflow-hidden border border-slate-200 shadow-sm shrink-0">
+            <img 
+              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100" 
+              alt="Sarah" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Welcome Banner / Title Section */}
+      <div className="patient-dashboard__welcome flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
-          <h2 className="font-display text-3xl font-extrabold text-[#0c1a30] leading-none mb-2 tracking-tight">
-            Patient EHR Portal
-          </h2>
-          <p className="font-sans text-sm text-slate-550">
-            Welcome back, {firstName}. Access your clinical profile &amp; health records.
-          </p>
+          <h1 className="text-3xl font-extrabold text-[#0B1C30] tracking-tight">Welcome back, {firstName}</h1>
+          <p className="text-sm text-slate-500 font-semibold mt-1">Here is what's happening with your clinical profile today.</p>
         </div>
-
-        {/* Info badges */}
-        <div className="flex items-center gap-4 bg-white/70 backdrop-blur border border-slate-200/80 px-4 py-2 rounded-2xl shadow-sm">
-          <div className="text-right">
-            <p className="font-sans text-[10px] uppercase font-bold text-slate-400 tracking-wider">Today's Date</p>
-            <p className="font-sans text-sm font-semibold text-slate-800">
-              {new Date().toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })}
-            </p>
-          </div>
-          <div className="w-px h-8 bg-slate-200 mx-1"></div>
-          <div className="relative group cursor-pointer">
-            <div className="w-10 h-10 bg-[#eff4ff] text-[#003c90] group-hover:bg-[#003c90] group-hover:text-white rounded-xl flex items-center justify-center transition-all duration-300">
-              <Bell className="w-5 h-5" />
-            </div>
-            <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white animate-pulse"></span>
-          </div>
-        </div>
-      </header>
-
-      {/* Tab Navigation (Glassmorphic Slider Design) */}
-      <div className="flex gap-2 p-1.5 bg-slate-100 rounded-2xl max-w-md shadow-inner">
         <button
-          onClick={() => setActiveSubTab("overview")}
-          className={`flex-1 font-sans text-xs font-bold py-2.5 rounded-xl transition-all uppercase tracking-wider ${
-            activeSubTab === "overview" ? "bg-white text-[#003c90] shadow-sm" : "text-slate-505 hover:text-[#003c90]"
-          }`}
+          onClick={() => navigate("/book")}
+          className="bg-[#003c90] hover:bg-[#0b57d0] text-white px-5 py-3 rounded-xl font-bold text-sm transition-all flex items-center gap-2 shadow-md shadow-blue-900/10 cursor-pointer"
         >
-          Dashboard
-        </button>
-        <button
-          onClick={() => setActiveSubTab("appointments")}
-          className={`flex-1 font-sans text-xs font-bold py-2.5 rounded-xl transition-all uppercase tracking-wider ${
-            activeSubTab === "appointments" ? "bg-white text-[#003c90] shadow-sm" : "text-slate-505 hover:text-[#003c90]"
-          }`}
-        >
-          Appointments
-        </button>
-        <button
-          onClick={() => setActiveSubTab("records")}
-          className={`flex-1 font-sans text-xs font-bold py-2.5 rounded-xl transition-all uppercase tracking-wider ${
-            activeSubTab === "records" ? "bg-white text-[#003c90] shadow-sm" : "text-slate-505 hover:text-[#003c90]"
-          }`}
-        >
-          Medical Records
+          <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>add</span>
+          Book Appointment
         </button>
       </div>
 
       {/* === OVERVIEW TAB === */}
       {activeSubTab === "overview" && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <ClinicalPassport
-            primaryAppointment={primaryAppointment}
-            getApptDateDetails={getApptDateDetails}
-            setActiveSubTab={setActiveSubTab}
-          />
-          <SecurityActivityLogs />
-          <PharmacyAutoRefills />
-          <PathologyStudiesList
-            labReports={labReports}
-            downloadingReportId={downloadingReportId}
-            handleDownload={handleDownload}
-            setActiveSubTab={setActiveSubTab}
-          />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left Area (2/3 width) */}
+          <div className="lg:col-span-2 space-y-6">
+            <ClinicalPassport
+              primaryAppointment={primaryAppointment}
+              getApptDateDetails={getApptDateDetails}
+              setActiveSubTab={setActiveSubTab}
+            />
+            <PharmacyAutoRefills />
+          </div>
+
+          {/* Right Area (1/3 width) */}
+          <div className="space-y-6">
+            <SecurityActivityLogs />
+            <PathologyStudiesList
+              labReports={labReports}
+              downloadingReportId={downloadingReportId}
+              handleDownload={handleDownload}
+              setActiveSubTab={setActiveSubTab}
+            />
+          </div>
         </div>
       )}
 
@@ -156,6 +208,9 @@ const PatientDashboard = () => {
           handleDownload={handleDownload}
         />
       )}
+
+      {/* Premium Footer */}
+      <DashboardFooter description="Your appointments, reports, pharmacy access, and care-team updates in one protected patient workspace." />
     </div>
   );
 };

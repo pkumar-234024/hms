@@ -3,6 +3,7 @@ import { Bell, Settings, Menu, X } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '../ui/Button';
 import { useAppSelector } from '../../app/hooks';
+import './PublicNavBar.css';
 
 export const PublicNavBar = () => {
   const navigate = useNavigate();

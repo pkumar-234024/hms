@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { logout } from "../../features/auth/authSlice";
+import "./Sidebar.css";
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
@@ -13,6 +14,57 @@ const Sidebar = () => {
   const initials = user?.firstName
     ? user.firstName.charAt(0).toUpperCase()
     : "U";
+  const isAdmin = role === "Super Admin" || role === "Admin";
+  const brandTitle = role === "Doctor" ? "Clinical Clarity" : "Admin Center";
+  const brandSubtitle =
+    role === "Doctor" ? "Admin Center" : "Medical Management";
+  const navItems = [
+    {
+      to: isAdmin
+        ? "/admin"
+        : role === "Doctor"
+          ? "/doctor/dashboard"
+          : "/patient/dashboard",
+      icon: "dashboard",
+      label: "Overview",
+      end: true,
+    },
+    {
+      to:
+        role === "Patient"
+          ? "/book"
+          : role === "Doctor"
+            ? "/doctor/patients"
+            : "/admin/doctors",
+      icon: "group",
+      label: "Patients",
+    },
+    {
+      to:
+        role === "Patient"
+          ? "/book"
+          : role === "Doctor"
+            ? "/doctor/schedule"
+            : "/settings",
+      icon: "calendar_month",
+      label: "Schedules",
+    },
+    // {
+    //   to: role === "Patient" ? "/patient/reports" : "/settings",
+    //   icon: "biotech",
+    //   label: "Lab Reports",
+    // },
+    // { to: "/settings", icon: "local_pharmacy", label: "Pharmacy" },
+    // {
+    //   to: isAdmin
+    //     ? "/admin"
+    //     : role === "Doctor"
+    //       ? "/doctor/dashboard"
+    //       : "/patient/dashboard",
+    //   icon: "analytics",
+    //   label: "Analytics",
+    // },
+  ];
 
   const handleLogout = () => {
     dispatch(logout());
@@ -20,115 +72,38 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="sidebar">
+    <aside className="sidebar clinical-sidebar">
       <NavLink to="/" className="sidebar__brand">
-        <span className="material-symbols-outlined">clinical_notes</span>
-        <span className="sidebar__brand-name">MediFlow</span>
+        <span className="sidebar__brand-mark material-symbols-outlined">
+          {role === "Doctor" ? "medical_services" : "medical_information"}
+        </span>
+        <span>
+          <span className="sidebar__brand-name">{brandTitle}</span>
+          <span className="sidebar__brand-subtitle">{brandSubtitle}</span>
+        </span>
       </NavLink>
 
       <nav className="sidebar__nav">
-        {(role === "Super Admin" || role === "Admin") && (
-          <>
-            <NavLink
-              to="/admin"
-              className={({ isActive }) =>
-                `sidebar__item ${isActive ? "sidebar__item--active" : ""}`
-              }
-              end
-            >
-              <span className="material-symbols-outlined">dashboard</span>
-              Dashboard
-            </NavLink>
-            <NavLink
-              to="/admin/doctors"
-              className={({ isActive }) =>
-                `sidebar__item ${isActive ? "sidebar__item--active" : ""}`
-              }
-            >
-              <span className="material-symbols-outlined">groups</span>
-              Doctors
-            </NavLink>
-          </>
-        )}
-
-        {role === "Doctor" && (
-          <>
-            <NavLink
-              to="/doctor/dashboard"
-              className={({ isActive }) =>
-                `sidebar__item ${isActive ? "sidebar__item--active" : ""}`
-              }
-              end
-            >
-              <span className="material-symbols-outlined">dashboard</span>
-              Dashboard
-            </NavLink>
-            <NavLink
-              to="/doctor/patients"
-              className={({ isActive }) =>
-                `sidebar__item ${isActive ? "sidebar__item--active" : ""}`
-              }
-            >
-              <span className="material-symbols-outlined">group</span>
-              My Patients
-            </NavLink>
-            <NavLink
-              to="/doctor/schedule"
-              className={({ isActive }) =>
-                `sidebar__item ${isActive ? "sidebar__item--active" : ""}`
-              }
-            >
-              <span className="material-symbols-outlined">calendar_month</span>
-              Schedule
-            </NavLink>
-          </>
-        )}
-
-        {role === "Patient" && (
-          <>
-            <NavLink
-              to="/patient/dashboard"
-              className={({ isActive }) =>
-                `sidebar__item ${isActive ? "sidebar__item--active" : ""}`
-              }
-              end
-            >
-              <span className="material-symbols-outlined">dashboard</span>
-              Dashboard
-            </NavLink>
-            <NavLink
-              to="/patient/reports"
-              className={({ isActive }) =>
-                `sidebar__item ${isActive ? "sidebar__item--active" : ""}`
-              }
-            >
-              <span className="material-symbols-outlined">description</span>
-              Medical Reports
-            </NavLink>
-            <NavLink
-              to="/book"
-              className={({ isActive }) =>
-                `sidebar__item ${isActive ? "sidebar__item--active" : ""}`
-              }
-            >
-              <span className="material-symbols-outlined">add_circle</span>
-              Book Appointment
-            </NavLink>
-          </>
-        )}
-
-        <NavLink
-          to="/settings"
-          className={({ isActive }) =>
-            `sidebar__item ${isActive ? "sidebar__item--active" : ""}`
-          }
-        >
-          <span className="material-symbols-outlined">settings</span>
-          Settings
-        </NavLink>
+        {navItems.map((item) => (
+          <NavLink
+            key={`${item.label}-${item.to}`}
+            to={item.to}
+            className={({ isActive }) =>
+              `sidebar__item ${isActive ? "sidebar__item--active" : ""}`
+            }
+            end={item.end}
+          >
+            <span className="material-symbols-outlined">{item.icon}</span>
+            {item.label}
+          </NavLink>
+        ))}
       </nav>
 
       <div className="sidebar__footer">
+        {/* <button className="sidebar__emergency">
+          <span className="material-symbols-outlined">emergency_home</span>
+          Emergency Alert
+        </button> */}
         <div className="sidebar__user">
           <div className="sidebar__avatar">{initials}</div>
           <div className="sidebar__user-info">
