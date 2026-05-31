@@ -1,11 +1,12 @@
-interface StatCardProps {
+import "../../../components/dashboard/dashboard.css";
+
+interface AdminStatCardProps {
   icon: string;
   value: string;
   label: string;
   trend: string;
   trendColor: "secondary" | "error" | "on-surface-variant";
-  iconBg: string;
-  iconColor: string;
+  iconColor: "blue" | "green" | "amber" | "red" | "teal" | "purple";
 }
 
 export const StatCard = ({
@@ -14,34 +15,32 @@ export const StatCard = ({
   label,
   trend,
   trendColor,
-  iconBg,
   iconColor,
-}: StatCardProps) => {
-  const trendColorClass =
-    trendColor === "secondary"
-      ? "text-secondary"
-      : trendColor === "error"
-        ? "text-error"
-        : "text-on-surface-variant";
+}: AdminStatCardProps) => {
+  const trendTypeMap = {
+    secondary: "up" as const,
+    error: "down" as const,
+    "on-surface-variant": "neutral" as const,
+  };
+
   return (
-    <div className="bg-surface-container-lowest p-md rounded-xl custom-shadow border border-outline-variant/10 flex flex-col justify-between transition-all hover:border-primary/30 hover:scale-[1.02] duration-300">
-      <div className="flex justify-between items-start mb-sm">
-        <div
-          className={`p-2 ${iconBg} rounded-lg ${iconColor} flex items-center justify-center`}
-        >
+    <div
+      className="stat-card-unified"
+      style={{ "--stat-accent": iconColor === "red" ? "#dc2626" : "#003c90" } as React.CSSProperties}
+    >
+      <div className="stat-card-unified__header">
+        <div className={`stat-card-unified__icon stat-card-unified__icon--${iconColor}`}>
           <span className="material-symbols-outlined">{icon}</span>
         </div>
-        <span className={`font-label-md text-label-md ${trendColorClass}`}>
+        <span
+          className={`stat-card-unified__trend stat-card-unified__trend--${trendTypeMap[trendColor]}`}
+        >
           {trend}
         </span>
       </div>
       <div>
-        <p className="font-caption text-caption text-on-surface-variant uppercase tracking-wider font-semibold">
-          {label}
-        </p>
-        <h3 className="font-display-lg text-display-lg text-on-surface mt-xs leading-none">
-          {value}
-        </h3>
+        <p className="stat-card-unified__label">{label}</p>
+        <h3 className="stat-card-unified__value">{value}</h3>
       </div>
     </div>
   );

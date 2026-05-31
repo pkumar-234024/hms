@@ -1,56 +1,53 @@
+/* ═══════════════════════════════════════════════════════════
+   Patient Dashboard Layout
+   ═══════════════════════════════════════════════════════════ */
+
 .patient-dashboard {
   width: 100%;
   max-width: none;
   padding-bottom: 24px;
   color: #081528;
+  position: relative;
+  overflow: hidden;
 }
 
-.patient-dashboard__subnav {
-  margin: -8px -16px 32px;
-  border-radius: 0 !important;
-  border-left: 0 !important;
-  border-right: 0 !important;
-  box-shadow: none !important;
+/* Main + Side columns */
+.patient-dashboard__main-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.patient-dashboard__subnav span:first-child {
-  font-size: 28px;
+.patient-dashboard__side-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.patient-dashboard__welcome {
-  margin-bottom: 44px !important;
-}
-
-.patient-dashboard__welcome h1 {
-  font-size: 40px;
-  line-height: 1.12;
-  letter-spacing: 0;
-}
-
-.patient-dashboard__welcome p {
-  font-size: 20px;
-  color: #202636;
-  font-weight: 400;
-}
-
-.patient-dashboard__welcome button {
-  min-width: 220px;
-  height: 60px;
-  border-radius: 8px;
-  font-size: 18px;
-}
-
+/* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 767px) {
-  .patient-dashboard__welcome h1 {
-    font-size: 32px;
+  .patient-dashboard .welcome-banner__title {
+    font-size: 28px;
   }
 
-  .patient-dashboard__welcome p {
-    font-size: 16px;
+  .patient-dashboard .welcome-banner__subtitle {
+    font-size: 14px;
   }
 
-  .patient-dashboard__welcome button {
+  .patient-dashboard .welcome-banner__cta {
     width: 100%;
+    justify-content: center;
   }
 
+  .patient-dashboard .stats-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .patient-dashboard .stat-card-unified__value {
+    font-size: 24px;
+  }
+
+  .patient-dashboard .dashboard-grid-2 {
+    grid-template-columns: 1fr;
+  }
 }

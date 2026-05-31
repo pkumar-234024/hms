@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Phone,
-  Activity,
   ChevronRight,
-  ArrowRight,
-  Eye,
   CheckCircle2,
   ShieldCheck,
   Globe,
@@ -21,44 +18,9 @@ import "./LandingPage.css";
 export default function LandingPage() {
   const navigate = useNavigate();
 
-  // Formal form states
-  const [fullName, setFullName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [specialty, setSpecialty] = useState("General Consultation");
-  const [dateTime, setDateTime] = useState("");
-
-  // Submit animation states
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
   // Emergency state
   const [emergencyActive, setEmergencyActive] = useState(false);
   const handleToggleEmergency = () => setEmergencyActive(!emergencyActive);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!fullName || !phoneNumber) {
-      alert("Please fill in your name and phone number.");
-      return;
-    }
-
-    setIsSubmitting(true);
-    setTimeout(() => {
-      // Mock successful booking
-      setIsSubmitting(false);
-      setIsSuccess(true);
-
-      // Reset after a brief moment
-      setTimeout(() => {
-        setIsSuccess(false);
-        setFullName("");
-        setPhoneNumber("");
-        setDateTime("");
-        // Smoothly scroll to top
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 3000);
-    }, 1500);
-  };
 
   const handleNavigateToRole = (role: string) => {
     if (role === "patient") {
@@ -109,11 +71,7 @@ export default function LandingPage() {
               <Button
                 variant="gradient"
                 colorType="primary"
-                onClick={() =>
-                  document
-                    .getElementById("booking")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
+                onClick={() => navigate("/book")}
                 className="h-12 w-full sm:w-auto min-w-[11rem] !rounded-lg whitespace-nowrap"
               >
                 Book Appointment
@@ -129,6 +87,38 @@ export default function LandingPage() {
               >
                 View Medical Services
               </Button>
+            </div>
+
+            <div className="mt-lg grid grid-cols-1 sm:grid-cols-3 gap-sm max-w-3xl mx-auto lg:mx-0">
+              {[
+                {
+                  title: "Fast Booking",
+                  description:
+                    "Schedule consultations in under a minute with live doctor availability.",
+                },
+                {
+                  title: "Trusted Care",
+                  description:
+                    "Connect with verified specialists from a HIPAA-compliant network.",
+                },
+                {
+                  title: "Personalized Support",
+                  description:
+                    "Manage appointments, records, and care plans all in one place.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="bg-white p-md rounded-3xl shadow-sm border border-outline-variant"
+                >
+                  <p className="font-label-md text-label-md text-secondary mb-xs">
+                    {item.title}
+                  </p>
+                  <p className="font-body-md text-body-md text-on-surface-variant">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -162,131 +152,51 @@ export default function LandingPage() {
       {/* ── Quick Booking & Services Bento (Exact code.html Match) ── */}
       <section className="py-xl mx-auto px-gutter" id="booking">
         <div className="grid lg:grid-cols-3 gap-md">
-          {/* Booking Form Card */}
-          <div className="lg:col-span-2 bg-surface-container-lowest p-md lg:p-lg rounded-xl shadow-sm border border-outline-variant">
-            <div className="flex justify-between items-start mb-lg">
-              <div>
-                <h2 className="font-headline-md text-headline-md text-primary mb-xs">
-                  Quick Appointment
-                </h2>
-                <p className="font-body-md text-body-md text-on-surface-variant">
-                  Fill in your details below for a fast-track consultation.
-                </p>
-              </div>
-
-              <div className="hidden sm:block text-right">
-                <p className="font-caption text-caption text-on-surface-variant mb-xs">
-                  Returning patient?
-                </p>
-                <button
-                  onClick={() => handleNavigateToRole("patient")}
-                  className="text-primary font-label-md text-label-md hover:underline flex items-center justify-end gap-xs bg-transparent border-none cursor-pointer"
-                >
-                  <Eye className="w-[18px] h-[18px] inline-block" /> Login to
-                  Sync
-                </button>
-              </div>
-            </div>
-
-            {isSuccess ? (
-              <div className="bg-emerald-50 border border-emerald-100 text-emerald-950 p-8 rounded-xl text-center flex flex-col items-center justify-center min-h-[260px] shadow-inner">
-                <CheckCircle2 className="w-14 h-14 text-emerald-600 mb-4 animate-bounce" />
-                <h3 className="font-headline-md text-headline-md text-secondary mb-xs">
-                  Slot Secured Successfully!
-                </h3>
-                <p className="font-body-md text-body-md text-slate-600 leading-relaxed mb-4">
-                  Your appointment slot has been reserved. Switch to the{" "}
-                  <strong>Patient</strong> or <strong>Doctor</strong> dashboards
-                  in the top role bar to inspect the slot details.
-                </p>
-                <span className="text-[10px] bg-emerald-100 text-emerald-800 font-mono font-bold px-3 py-1 rounded">
-                  No login required for first-time bookings
-                </span>
-              </div>
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                className="grid sm:grid-cols-2 gap-md"
+          {/* Booking CTA Card */}
+          <div className="lg:col-span-2 bg-surface-container-lowest p-md lg:p-lg rounded-xl shadow-sm border border-outline-variant flex flex-col justify-between">
+            <div>
+              <p className="font-label-md text-label-md text-secondary mb-xs">
+                Online Appointment Scheduling
+              </p>
+              <h3 className="font-headline-lg text-headline-lg text-primary mb-md">
+                Book your next consultation on a dedicated page.
+              </h3>
+              <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-lg">
+                Use our new booking page to choose a specialist, pick a convenient time, and manage appointments all from one place.
+              </p>
+              <Button
+                variant="gradient"
+                colorType="primary"
+                onClick={() => navigate("/book")}
+                className="h-14 w-full sm:w-auto !rounded-xl"
               >
-                <div className="flex flex-col gap-xs">
-                  <label className="font-label-md text-label-md text-on-surface ml-1">
-                    Full Name
-                  </label>
-                  <input
-                    required
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    className="h-12 border border-outline-variant rounded-lg focus:ring-primary-container focus:border-primary px-4 font-body-md transition-all bg-white hover:border-outline"
-                    placeholder="John Doe"
-                    type="text"
-                  />
-                </div>
-                <div className="flex flex-col gap-xs">
-                  <label className="font-label-md text-label-md text-on-surface ml-1">
-                    Phone Number
-                  </label>
-                  <input
-                    required
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    className="h-12 border border-outline-variant rounded-lg focus:ring-primary-container focus:border-primary px-4 font-body-md transition-all bg-white hover:border-outline"
-                    placeholder="+1 (555) 000-0000"
-                    type="tel"
-                  />
-                </div>
-                <div className="flex flex-col gap-xs">
-                  <label className="font-label-md text-label-md text-on-surface ml-1">
-                    Specialty
-                  </label>
-                  <select
-                    value={specialty}
-                    onChange={(e) => setSpecialty(e.target.value)}
-                    className="h-12 border border-outline-variant rounded-lg focus:ring-primary-container focus:border-primary px-4 font-body-md transition-all bg-white hover:border-outline"
-                  >
-                    <option>General Consultation</option>
-                    <option>Pathology &amp; Blood Tests</option>
-                    <option>Cardiology</option>
-                    <option>Pediatrics</option>
-                    <option>Pharmacy Services</option>
-                  </select>
-                </div>
-                <div className="flex flex-col gap-xs">
-                  <label className="font-label-md text-label-md text-on-surface ml-1">
-                    Date &amp; Time
-                  </label>
-                  <input
-                    value={dateTime}
-                    onChange={(e) => setDateTime(e.target.value)}
-                    className="h-12 border border-outline-variant rounded-lg focus:ring-primary-container focus:border-primary px-4 font-body-md transition-all bg-white hover:border-outline"
-                    type="datetime-local"
-                  />
-                </div>
-                <div className="sm:col-span-2 mt-md">
-                  <Button
-                    variant="gradient"
-                    colorType="primary"
-                    disabled={isSubmitting}
-                    className="w-full h-14 !rounded-lg font-headline-md text-headline-md"
-                    type="submit"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Activity className="w-5 h-5 animate-spin mr-1" />
-                        Processing...
-                      </>
-                    ) : (
-                      <>
-                        Confirm Booking{" "}
-                        <ArrowRight className="w-5 h-5 inline-block" />
-                      </>
-                    )}
-                  </Button>
-                  <p className="text-center font-caption text-caption text-on-surface-variant mt-sm">
-                    No login required for first-time bookings.
+                Book Now
+              </Button>
+            </div>
+            <div className="mt-lg grid grid-cols-1 sm:grid-cols-2 gap-sm">
+              {[
+                {
+                  label: "Easy scheduling",
+                  text: "No more inline forms. One clear booking experience.",
+                },
+                {
+                  label: "Safe & secure",
+                  text: "HIPAA-compliant appointment flow for every patient.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="bg-white p-md rounded-3xl shadow-sm border border-outline-variant"
+                >
+                  <p className="font-label-md text-label-md text-secondary mb-xs">
+                    {item.label}
+                  </p>
+                  <p className="font-body-md text-body-md text-on-surface-variant">
+                    {item.text}
                   </p>
                 </div>
-              </form>
-            )}
+              ))}
+            </div>
           </div>
 
           {/* Emergency Contact Sidebar */}

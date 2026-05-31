@@ -6,7 +6,9 @@ import { FacilityHeatmap } from "./components/FacilityHeatmap";
 import { ComplianceStatus } from "./components/ComplianceStatus";
 import type { ProvisionedKey } from "./components/ActivatedKeysTable";
 import { DashboardFooter } from "../../components/dashboard/DashboardFooter";
+import "../../components/dashboard/dashboard.css";
 import "./AdminDashboard.css";
+
 const AdminDashboard = () => {
   // Provisioning form states
   const [provName, setProvName] = useState("");
@@ -69,7 +71,7 @@ const AdminDashboard = () => {
     setProvId("");
     handleRegenKey();
     alert(
-      "Patient credential securely provisioned over SHA-256 standard and active on EHR.",
+      "Patient credential securely provisioned over SHA-256 standard and active on EHR."
     );
   };
 
@@ -78,11 +80,18 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="admin-dashboard">
-      <header className="admin-dashboard__topbar">
+    <div className="admin-dashboard mesh-bg">
+      {/* Decorative glow orbs */}
+      <div className="dashboard-glow-orb dashboard-glow-orb--primary" />
+      <div className="dashboard-glow-orb dashboard-glow-orb--secondary" />
+
+      <header className="admin-dashboard__topbar fade-in-up">
         <h1>System Overview</h1>
         <div className="admin-dashboard__profile">
-          <button className="admin-dashboard__icon-btn" aria-label="Notifications">
+          <button
+            className="admin-dashboard__icon-btn"
+            aria-label="Notifications"
+          >
             <span className="material-symbols-outlined">notifications</span>
           </button>
           <div className="admin-dashboard__profile-text">
@@ -104,8 +113,7 @@ const AdminDashboard = () => {
           value="142"
           trend="+12% vs last week"
           trendColor="secondary"
-          iconBg="bg-primary-container/10"
-          iconColor="text-primary"
+          iconColor="blue"
         />
         <StatCard
           icon="patient_list"
@@ -113,8 +121,7 @@ const AdminDashboard = () => {
           value="1,208"
           trend="84% Capacity"
           trendColor="secondary"
-          iconBg="bg-secondary-container/20"
-          iconColor="text-secondary"
+          iconColor="teal"
         />
         <StatCard
           icon="inventory_2"
@@ -122,8 +129,7 @@ const AdminDashboard = () => {
           value="24.5k"
           trend="Low Stock Alert"
           trendColor="error"
-          iconBg="bg-primary-fixed"
-          iconColor="text-primary"
+          iconColor="amber"
         />
         <StatCard
           icon="biotech"
@@ -131,13 +137,12 @@ const AdminDashboard = () => {
           value="642"
           trend="Active Processing"
           trendColor="on-surface-variant"
-          iconBg="bg-surface-container-high"
-          iconColor="text-on-surface"
+          iconColor="purple"
         />
       </section>
 
       {/* Credential Management & Analytics Section */}
-      <div className="admin-dashboard__main">
+      <div className="admin-dashboard__main fade-in-up fade-in-up--d3">
         {/* Provisioning Tool (2/3 width) */}
         <section className="admin-dashboard__workbench">
           <ProvisioningForm

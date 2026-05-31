@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { Bell, Settings, Menu, X } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Button } from '../ui/Button';
-import { useAppSelector } from '../../app/hooks';
-import './PublicNavBar.css';
+import { useState } from "react";
+import { Bell, Settings, Menu, X } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Button } from "../ui/Button";
+import { useAppSelector } from "../../app/hooks";
+import "./PublicNavBar.css";
 
 export const PublicNavBar = () => {
   const navigate = useNavigate();
@@ -13,10 +13,10 @@ export const PublicNavBar = () => {
 
   const handleLinkClick = (id: string, path: string) => {
     setIsMobileMenuOpen(false);
-    if (location.pathname === '/') {
+    if (location.pathname === "/") {
       const el = document.getElementById(id);
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
+        el.scrollIntoView({ behavior: "smooth" });
         return;
       }
     }
@@ -30,7 +30,7 @@ export const PublicNavBar = () => {
         <nav className="flex justify-between items-center w-full px-gutter mx-auto h-16">
           <div
             className="flex items-center gap-md cursor-pointer"
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
           >
             <span className="font-headline-md text-headline-md font-bold text-primary">
               Clinical Clarity
@@ -39,31 +39,31 @@ export const PublicNavBar = () => {
 
           <div className="hidden md:flex items-center gap-lg">
             <button
-              onClick={() => navigate('/login')}
+              onClick={() => navigate("/login")}
               className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors bg-transparent border-none cursor-pointer"
             >
-              Dashboard
+              About Us
             </button>
             <button
-              onClick={() => handleLinkClick('booking', '/')}
+              onClick={() => navigate("/login")}
               className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors bg-transparent border-none cursor-pointer"
             >
-              Appointments
+              Contact Us
             </button>
             <button
-              onClick={() => navigate('/login')}
+              onClick={() => navigate("/login")}
               className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors bg-transparent border-none cursor-pointer"
             >
               Medical Records
             </button>
             <button
-              onClick={() => handleLinkClick('integrated-services', '/')}
+              onClick={() => handleLinkClick("integrated-services", "/")}
               className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors bg-transparent border-none cursor-pointer"
             >
               Pathology
             </button>
             <button
-              onClick={() => navigate('/login')}
+              onClick={() => navigate("/login")}
               className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors bg-transparent border-none cursor-pointer"
             >
               Store
@@ -89,7 +89,7 @@ export const PublicNavBar = () => {
             <Button
               variant="filled"
               colorType="primary"
-              onClick={() => handleLinkClick('booking', '/')}
+              onClick={() => handleLinkClick("booking", "/")}
               className="!py-1.5 !px-5 h-auto text-sm"
             >
               Book Now
@@ -99,7 +99,7 @@ export const PublicNavBar = () => {
               <Button
                 variant="filled"
                 colorType="primary"
-                onClick={() => navigate('/')}
+                onClick={() => navigate("/")}
                 className="!py-1.5 !px-5 h-auto text-sm"
               >
                 Go to Portal
@@ -108,7 +108,7 @@ export const PublicNavBar = () => {
               <Button
                 variant="filled"
                 colorType="primary"
-                onClick={() => navigate('/login')}
+                onClick={() => navigate("/login")}
                 className="!py-1.5 !px-5 h-auto text-sm"
               >
                 Login
@@ -137,14 +137,14 @@ export const PublicNavBar = () => {
             <button
               onClick={() => {
                 setIsMobileMenuOpen(false);
-                navigate('/login');
+                navigate("/login");
               }}
               className="text-left font-body-md text-body-md text-on-surface-variant hover:text-primary py-2.5 px-3 bg-transparent hover:bg-slate-100 rounded-lg border-none cursor-pointer transition-colors"
             >
               Dashboard
             </button>
             <button
-              onClick={() => handleLinkClick('booking', '/')}
+              onClick={() => handleLinkClick("booking", "/")}
               className="text-left font-body-md text-body-md text-on-surface-variant hover:text-primary py-2.5 px-3 bg-transparent hover:bg-slate-100 rounded-lg border-none cursor-pointer transition-colors"
             >
               Appointments
@@ -152,14 +152,14 @@ export const PublicNavBar = () => {
             <button
               onClick={() => {
                 setIsMobileMenuOpen(false);
-                navigate('/login');
+                navigate("/login");
               }}
               className="text-left font-body-md text-body-md text-on-surface-variant hover:text-primary py-2.5 px-3 bg-transparent hover:bg-slate-100 rounded-lg border-none cursor-pointer transition-colors"
             >
               Medical Records
             </button>
             <button
-              onClick={() => handleLinkClick('integrated-services', '/')}
+              onClick={() => handleLinkClick("integrated-services", "/")}
               className="text-left font-body-md text-body-md text-on-surface-variant hover:text-primary py-2.5 px-3 bg-transparent hover:bg-slate-100 rounded-lg border-none cursor-pointer transition-colors"
             >
               Pathology
@@ -167,7 +167,7 @@ export const PublicNavBar = () => {
             <button
               onClick={() => {
                 setIsMobileMenuOpen(false);
-                navigate('/login');
+                navigate("/login");
               }}
               className="text-left font-body-md text-body-md text-on-surface-variant hover:text-primary py-2.5 px-3 bg-transparent hover:bg-slate-100 rounded-lg border-none cursor-pointer transition-colors"
             >
